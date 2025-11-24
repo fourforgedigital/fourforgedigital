@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FourForge Digital — Your Complete Web solutions</title>
+  <meta name="description" content="FourForge Digital — web development, UI/UX, data analysis, content & video production. Premium digital services for businesses." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- ====== Fonts (Google) ====== -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------
+       Brand colors & variables
+    --------------------------*/
+    :root{
+      --bg: #0f172a;             /* deep navy */
+      --card: #0b1220;           /* near black card */
+      --muted: #94a3b8;         /* slate-muted */
+      /* Responsive spacing/scale variables */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --maxwidth: 1200px;
+      --accent1: #7c3aed;       /* violet */
+      --accent2: #f59e0b;       /* saffron/orange */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --maxwidth: 1200px;
+      --blur: 28px;
+      --radius: 14px;
+    }
+     /* -------------------------
+       Reset & base
+     --------------------------*/
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      overflow-x:hidden;
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent),
+                  radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.04), transparent),
+                  linear-gradient(180deg,#031027 0%, #071633 50%, #08182c 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+      line-height:1.4;
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxwidth);margin:0 auto;padding:28px}
+    /* Make media responsive by default */
+    img, video{max-width:100%;height:auto;display:block;object-fit:cover}
+
+    /* -------------------------
+      Responsive container padding
+     --------------------------*/
+     @media (max-width:800px){ .container{padding:18px} }
+     /* -------------------------
+       Header
+    --------------------------*/
+    header.site{
+      position:sticky; top:12px; z-index:60;
+      margin:0 auto; max-width:var(--maxwidth);
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      padding:10px 18px;
+      margin-bottom:18px;
+      display:flex; align-items:center; justify-content:space-between;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand .txt{line-height:1}
+    /* Brand animation: FFD jump -> expand to full name -> collapse back. */
+    .brand .title{font-family:Poppins, Inter; font-weight:700; font-size:18px; letter-spacing:0.2px}
+
+    /* Container that locks width to prevent layout-shift */
+    .brand-anim{
+      display:inline-block; position:relative; vertical-align:middle; overflow:visible; white-space:nowrap; will-change:width;
+    }
+
+    /* FFD initials (jumping element) */
+    .brand-ffd{
+      display:inline-block; font-family:Poppins, Inter; font-weight:800; font-size:20px; letter-spacing:0.6px;
+      transform-origin:center bottom; transition: opacity .45s ease, transform .45s cubic-bezier(.2,.9,.3,1); color: #e6eef8; backface-visibility:hidden;
+    }
+
+    /* Full brand text (typing target) — show inline and readable */
+    .brand-full{ display:inline-flex; align-items:center; gap:8px; font-family:Poppins, Inter; font-weight:700; font-size:18px; color:#e6eef8; pointer-events:none; opacity:1; transform:none; transition:none }
+
+    /* Jump keyframes with squash-and-stretch + rebound */
+    @keyframes ffdJump{
+      0%   { transform: translateY(20px) scaleY(.85) scaleX(1.04); }
+      30%  { transform: translateY(-10px) scaleY(1.12) scaleX(.92); }
+      55%  { transform: translateY(4px) scaleY(.96) scaleX(1.01); }
+      80%  { transform: translateY(-2px) scaleY(1.03) scaleX(.99); }
+      100% { transform: translateY(0) scaleY(1) scaleX(1); }
+    }
+
+    /* Add .jump to trigger the jump animation on initials */
+    .brand-ffd.jump{ animation: ffdJump .85s cubic-bezier(.2,.9,.3,1) both }
+
+    /* When container has .show-full, reveal full text and fade initials out */
+    .brand-anim.show-full .brand-full{ opacity:1; transform:scale(1) }
+    .brand-anim.show-full .brand-ffd{ opacity:0; transform:scale(.95) translateY(-4px) }
+
+    /* Smooth rendering */
+    .brand-anim .brand-ffd, .brand-anim .brand-full{ -webkit-font-smoothing:antialiased }
+
+    /* Respect reduced motion: show full name statically */
+    @media (prefers-reduced-motion: reduce){
+      .brand-ffd.jump{ animation:none }
+        .brand-anim .brand-full{ transition:none; transform:none; opacity:1 }
+        .brand-anim .brand-ffd{ opacity:0; transform:none }
+      }
+
+      /* Typing cursor and reduced-motion-safe typing styles */
+      .brand-full{ display:inline-flex; align-items:center; gap:8px }
+      .typing-cursor{ width:2px; height:1.1em; background:currentColor; display:inline-block; vertical-align:middle; border-radius:1px; margin-left:4px; animation: blink 1s steps(2,start) infinite }
+      @keyframes blink{ 0%,49%{ opacity:1 } 50%,100%{ opacity:0 } }
+      @media (prefers-reduced-motion: reduce){
+        .typing-cursor{ display:none; }
+    }
+    .brand .sub{font-size:12px; color:var(--muted)}
+    /* Site logo (replaces inline SVG) */
+    .site-logo{width:48px;height:48px;object-fit:contain;display:block}
+    @media (max-width:560px){
+      .site-logo{width:40px;height:40px}
+    }
+    nav.links{display:flex;gap:18px;align-items:center}
+    nav.links a{font-weight:600;padding:8px 10px;border-radius:10px; text-decoration:none; color:var(--muted)}
+    nav.links a.cta{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#061126; box-shadow:0 6px 20px rgba(124,58,237,0.12)}
+    .hamb{
+      display:none;
+      background:transparent;
+      border:0;
+      padding:8px;
+      border-radius:8px;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+     /* -------------------------
+       Hero (fluid & responsive)
+     --------------------------*/
+     .hero{display:grid;grid-template-columns:1fr minmax(260px,480px);gap:clamp(16px,2.8vw,36px);align-items:center;padding:clamp(28px,6vw,64px) 0}
+     .hero-left h1{font-family:Poppins; font-weight:700; font-size:clamp(26px,4vw,44px); margin:0 0 12px; line-height:1.05}
+     .hero-left p.lead{color:var(--muted); margin:0 0 18px; font-size:clamp(14px,1.6vw,16px)}
+    .cta-row{display:flex;gap:12px;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#061126; border:0; cursor:pointer;
+      transform: translateZ(0); /* for crispness */
+    }
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--muted); font-weight:600}
+    .stats{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .stat{background:var(--glass); padding:10px 12px;border-radius:10px; font-weight:700; color:#fff; min-width:120px; text-align:center}
+    /* right mock */
+    .mock-wrap{position:relative; height:clamp(220px,36vw,420px); border-radius:20px; overflow:visible; display:flex; align-items:center; justify-content:center}
+    .floating-effect{position:absolute; inset: -24% -12% auto auto; width:480px; height:480px; filter: blur(var(--blur)); opacity:0.22; background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.95), transparent 20%), radial-gradient(circle at 80% 80%, rgba(245,158,11,0.95), transparent 20%); mix-blend-mode:screen; border-radius:50%}
+
+    /* mock monitor - more polished with bezel, subtle tilt and glow */
+      .mock-device{position:relative; width:88%; max-width:520px; height:76%; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; align-items:center; transform: perspective(800px) rotateX(2deg);}
+    .mock-device::before{content:''; position:absolute; width:92%; height:86%; top:42px; border-radius:18px; background: linear-gradient(180deg,#071225,#031025); box-shadow: 0 24px 60px rgba(2,6,23,0.55); transform: translateY(-6px); z-index: -1}
+
+    /* desktop screen inside the mock device - glossy panel */
+    .mock-screen{width:94%; height:70%; background:linear-gradient(180deg,#071126 0%, #04101a 100%); border-radius:12px; border:8px solid rgba(2,6,23,0.65); box-shadow: 0 18px 40px rgba(2,6,23,0.6), inset 0 2px 18px rgba(255,255,255,0.02); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden}
+    .mock-screen:after{content:''; position:absolute; left:50%; transform:translateX(-50%); bottom:-18px; width:120px; height:16px; background:linear-gradient(180deg,#061226,#04101a); border-radius:8px}
+    .mock-screen:before{content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00)); pointer-events:none}
+
+    /* animated slides inside mock screen */
+    .mock-slide{flex:1; width:100%; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#e6eef8; font-weight:800; font-size:18px; position:relative; overflow:hidden; padding:12px; text-align:center; transition:opacity .32s ease, transform .32s ease}
+    .mock-slide::before{content:''; position:absolute; inset:0; pointer-events:none; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); mix-blend-mode:overlay}
+    .mock-slide.fade-out{opacity:0; transform:translateY(6px)}
+    .mock-slide.fade-in{opacity:1; transform:translateY(0)}
+
+    /* controls */
+    .mock-controls{display:flex; gap:10px; align-items:center; justify-content:center}
+    .mock-controls .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.08); transition:all .28s ease}
+    .mock-controls .dot.active{background:#ffffff; width:22px; height:8px; border-radius:6px}
+    .mock-controls{display:flex; gap:8px; align-items:center; justify-content:center}
+    .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.06)}
+
+    /* -------------------------
+       Sections
+    --------------------------*/
+    section.block{padding:44px 0}
+    h2.section-title{font-size:22px;margin:0 0 12px}
+    p.section-sub{color:var(--muted); margin:0 0 18px}
+
+    /* Services grid */
+      .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+    .service-card{background:var(--card); border-radius:12px; padding:18px; box-shadow: 0 10px 30px rgba(2,6,23,0.55); transition: transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s; border:1px solid rgba(255,255,255,0.03)}
+    .service-card:hover{transform: translateY(-10px); box-shadow: 0 30px 70px rgba(2,6,23,0.6)}
+    .svc-title{font-weight:700;margin-bottom:6px}
+    .svc-desc{color:var(--muted); font-size:14px}
+
+    /* Portfolio grid */
+      .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+    .proj{position:relative; border-radius:12px; overflow:hidden; min-height:180px; aspect-ratio:4/3; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); cursor:pointer; border:1px solid rgba(255,255,255,0.03); z-index:0}
+    .proj img{width:100%; height:100%; object-fit:cover; display:block}
+    /* Overlay: stronger contrast, above the image, with opacity transition */
+    .proj .overlay{position:absolute; inset:0; display:flex; align-items:flex-end; padding:16px; background: linear-gradient(180deg, rgba(8,12,20,0.0), rgba(2,6,23,0.78)); color:#fff; transition: transform .26s, opacity .26s; transform: translateY(20px); opacity:0; z-index:2}
+    .proj .overlay *{color:#fff}
+    .proj .overlay div > div[style]{/* leave inline styles but ensure readable */ color:inherit}
+    .proj .overlay .overlay-desc{color:rgba(255,255,255,0.9)}
+    .proj:hover .overlay{transform: translateY(0); opacity:1}
+
+    /* founders */
+    .founder-wrap{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+    .founder-entry{display:flex;gap:16px;align-items:flex-start;min-width:320px;max-width:560px}
+    .founder-photo{width:120px;height:120px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,0.06);box-shadow:0 10px 24px rgba(2,6,23,0.6)}
+
+    @media (max-width: 760px){
+      .founder-entry{min-width:100%;max-width:100%;gap:12px}
+      .founder-photo{width:96px;height:96px}
+    }
+    .founder-bio{background:var(--card); padding:16px; border-radius:12px; box-shadow: 0 10px 30px rgba(2,6,23,0.6)}
+    .avatar{width:96px;height:96px;border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:22px; background:linear-gradient(90deg,var(--accent1),var(--accent2));}
+
+    /* contact */
+    .contact-grid{display:grid; grid-template-columns:1fr; gap:18px}
+    .contact-card{background:var(--card); padding:18px; border-radius:12px; box-shadow: 0 10px 30px rgba(2,6,23,0.6)}
+    form.contact-form{display:flex; flex-direction:column; gap:10px}
+    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:10px; border-radius:8px; color:#e6eef8}
+    /* Make selects explicitly dark and readable on focus/selection */
+    select{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.06);
+      padding:10px; border-radius:8px; color:#e6eef8;
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
+      background-repeat: no-repeat; background-position: right 10px center;
+    }
+    select:focus, select:active{ outline: none; box-shadow: 0 0 0 3px rgba(124,58,237,0.06); }
+    /* Try to style native options where supported so dropdown items are readable */
+    select option{ background-color: #061226; color: #e6eef8 }
+    .small{font-size:13px; color:var(--muted)}
+    .pay-qr{width:120px;height:120px;background:linear-gradient(90deg,var(--accent1),var(--accent2)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; color:#081126}
+
+    /* footer */
+    footer.site-foot{padding:28px 0; text-align:center; color:var(--muted)}
+
+    /* -------------------------
+       Animations & utility
+    --------------------------*/
+    .reveal{opacity:0; transform: translateY(14px); transition: all .6s cubic-bezier(.15,.9,.3,1); will-change:transform,opacity}
+    .reveal.show{opacity:1; transform: translateY(0)}
+    .glow-pulse{animation: pulse 3.8s infinite}
+    @keyframes pulse { 0%{filter: drop-shadow(0 0 0 rgba(124,58,237,0.18))} 50%{filter: drop-shadow(0 0 36px rgba(124,58,237,0.12))} 100%{filter: drop-shadow(0 0 0 rgba(124,58,237,0.18))} }
+
+    /* modal */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:120}
+    .modal.show{display:flex}
+    /* Project modal: stronger overlay and opaque panel for legibility */
+    #projModal{background: rgba(2,6,23,0.75);}
+    #projModal .panel{background: linear-gradient(180deg, rgba(6,10,20,0.98), rgba(4,8,18,0.95)); padding:24px; border-radius:12px; width:90%; max-width:900px; box-shadow:0 40px 100px rgba(2,6,23,0.92); border:1px solid rgba(255,255,255,0.04); color: #e6eef8}
+    #projModal .panel, #projModal .panel *{color: #e6eef8}
+    /* Mobile menu overrides: keep transitions and overlay click-to-close */
+    #mobileMenu{display:flex; opacity:0; pointer-events:none; transition:opacity .28s ease; backdrop-filter: blur(6px);}
+    #mobileMenu .panel{max-width:320px; width:92%; transform:translateX(18px); opacity:0; transition:transform .28s ease, opacity .28s ease; border-radius:12px}
+    #mobileMenu.show{opacity:1; pointer-events:auto}
+    #mobileMenu.show .panel{transform:translateX(0); opacity:1}
+    #mobileMenu .mobile-link{display:block; padding:10px 0; color:var(--muted); text-decoration:none; font-weight:700; transition:color .18s ease, transform .18s ease}
+    #mobileMenu .mobile-link:hover{color:#fff; transform:translateX(6px)}
+    #mobileMenu .mobile-close{position:absolute; right:12px; top:12px; border:0; background:transparent; color:#e6eef8; font-size:18px; cursor:pointer}
+    .modal .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px; border-radius:12px; width:90%; max-width:900px; box-shadow:0 30px 80px rgba(2,6,23,0.8)}
+
+    /* Responsive */
+    @media (max-width: 1000px){
+      .hero{grid-template-columns:1fr; gap:18px}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+      nav.links{display:none}
+      .hamb{display:block}
+    }
+    @media (max-width: 560px){
+      .services-grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .brand .title{font-size:16px}
+      .mock-wrap{height:260px}
+      .mock-device{height:220px}
+    }
+    /* Background canvas sits behind content */
+    #bgCanvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; display:block}
+    /* Ensure main container content sits above the canvas */
+    .container, header.site, footer.site-foot, .mock-wrap{position:relative; z-index:1}
+  </style>
+</head>
+<body>
+  <!-- Background animation canvas (floating expertise icons) -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+
+  <!-- ============================
+       Header
+  ============================= -->
+  <header class="site container" role="banner">
+    <a class="brand" href="#home" aria-label="FourForge Digital home">
+      <img src="FourForage.jpg" alt="FourForge Digital" class="site-logo" loading="eager" decoding="async" />
+      <div class="txt">
+        <div class="title">
+          <span class="brand-anim" id="brandAnim" aria-live="polite">
+            <span class="brand-full" id="brandFull" aria-hidden="true" data-text="FourForge Digital">
+              <span id="brandText" aria-hidden="true"></span>
+              <span class="typing-cursor" aria-hidden="true"></span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <nav class="links" role="navigation" aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#founders">Founders</a>
+      <a href="#contact" class="cta">Get Quote</a>
+    </nav>
+
+    <button class="hamb" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('show')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div id="mobileMenu" class="modal" style="background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.9));" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" style="position:relative;">
+      <button class="mobile-close" aria-label="Close menu" onclick="mobileClose()">✕</button>
+      <nav style="display:flex;flex-direction:column;gap:6px;padding:10px 6px">
+        <a class="mobile-link" href="#home" onclick="mobileClose()">Home</a>
+        <a class="mobile-link" href="#services" onclick="mobileClose()">Services</a>
+        <a class="mobile-link" href="#portfolio" onclick="mobileClose()">Portfolio</a>
+        <a class="mobile-link" href="#founders" onclick="mobileClose()">Founders</a>
+        <a class="mobile-link" href="#contact" onclick="mobileClose()">Contact</a>
+        <div style="margin-top:12px">
+          <button class="btn" onclick="mobileClose(); document.location='#contact'">Get Quote</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ============================
+       Hero
+  ============================= -->
+  <main id="home" class="container">
+    <section class="hero reveal">
+      <div class="hero-left">
+        <h1>FourForge Digital — We build brands that grow.</h1>
+        <p class="lead">Premium web development, UI/UX, data analysis, content creation and video — all tuned to make your business scale. Strategy-driven, beautifully executed, and focused on measurable results.</p>
+
+        <div class="cta-row">
+          <button class="btn" onclick="document.location='#contact'">Get a free quote</button>
+          <button class="btn secondary" onclick="document.location='#portfolio'">See our work</button>
+        </div>
+
+        <div class="stats" style="margin-top:20px">
+          <div class="stat">100+ Projects</div>
+          <div class="stat">50+ Happy Clients</div>
+          <div class="stat">Avg Turnaround 2–7 days</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="mock-wrap">
+          <div class="floating-effect glow-pulse" aria-hidden="true"></div>
+          <div class="mock-device">
+            <div class="mock-screen" aria-hidden="false">
+              <div id="mockSlides" class="mock-slide">Stunning Websites • Fast • Responsive</div>
+            </div>
+            <div class="mock-controls" style="margin-top:12px">
+              <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Services
+    ============================= -->
+    <section id="services" class="block reveal">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">End-to-end digital services. From pixel-perfect UI to full-stack websites, data insights and video production for promotions & reels.</p>
+
+      <div class="services-grid" style="margin-top:18px">
+        <div class="service-card">
+          <div class="svc-title">Web Development</div>
+          <div class="svc-desc">Full-stack websites, static or dynamic, fast and SEO-ready. Deploy pipelines & hosting setup included.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-title">UI / UX Design</div>
+          <div class="svc-desc">Research-driven interfaces, wireframes, prototypes and UI kits — made to convert and delight.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-title">Brand & Logo</div>
+          <div class="svc-desc">Strategic identity systems, logos, brand guidelines and assets ready for print & web.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-title">Content Creation</div>
+          <div class="svc-desc">Copywriting, blog strategy, social caption packs, thumbnails and creatives that hook audiences.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-title">Video & Reels</div>
+          <div class="svc-desc">End-to-end production: scripting, shooting, editing and shorts/reels optimized for engagement.</div>
+        </div>
+        <div class="service-card">
+          <div class="svc-title">Data Analysis</div>
+          <div class="svc-desc">Insights, dashboards and actionable reports that help you make decisions with confidence.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Portfolio
+    ============================= -->
+    <section id="portfolio" class="block reveal">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px">
+        <div>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-sub">Hand-picked projects showing our design thinking, technical craft and marketing impact.</p>
+        </div>
+        <div>
+          <button class="btn secondary" onclick="filterPortfolio('all')">All</button>
+          <button class="btn secondary" onclick="filterPortfolio('web')">Web</button>
+          <button class="btn secondary" onclick="filterPortfolio('video')">Video</button>
+          <button class="btn secondary" onclick="filterPortfolio('brand')">Brand</button>
+        </div>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+        <!-- Project 1 -->
+        <div class="proj" data-type="web" onclick="openProject(1)">
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2cdec5b2bfa9a706e4f8b1a1d3f7b5f4" alt="Project - cafe website" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Cafe Website</div>
+              <div style="font-size:13px;color:var(--muted)">One-page menu & booking flow</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="proj" data-type="brand" onclick="openProject(2)">
+          <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=89b2a0d3f9c9f4d5b2f2e8f5b3a550e6" alt="Project - brand identity" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Sweets Brand — Identity</div>
+              <div style="font-size:13px;color:var(--muted)">Wordmark, packaging & color system</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="proj" data-type="video" onclick="openProject(3)">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=ec8f7c5ef2b0f9b7ef7b3b2f8f63e6c0" alt="Project - promotional video" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Promo Video</div>
+              <div style="font-size:13px;color:var(--muted)">60s brand promo + vertical reels cut</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="proj" data-type="web" onclick="openProject(4)">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f3a8f8d6e2b1a3b6c4f0f2a0e9a6f3d" alt="Project - clinic site" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Clinic Site</div>
+              <div style="font-size:13px;color:var(--muted)">Services, booking & doctor profiles</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="proj" data-type="brand" onclick="openProject(5)">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=84a2f0c7f9a3d9b5a5f6d8e2c7a2b1f0" alt="Project - product packaging" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Packaging Design</div>
+              <div style="font-size:13px;color:var(--muted)">Retail-ready packaging & print files</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="proj" data-type="video" onclick="openProject(6)">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=ea5afe53d2a8f7b6d9c2b3f2b1a1f9d2" alt="Project - social pack" loading="lazy" decoding="async">
+          <div class="overlay">
+            <div>
+              <div style="font-weight:700">Social Campaign</div>
+              <div style="font-size:13px;color:var(--muted)">15 creatives + 10 reels thumbnails</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- modal for project detail -->
+    <div id="projModal" class="modal" aria-hidden="true">
+      <div class="panel" role="dialog" aria-modal="true" aria-label="Project details">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div style="font-weight:800;font-size:18px" id="projTitle">Project title</div>
+          <button onclick="closeProject()" class="btn secondary">Close</button>
+        </div>
+        <div id="projBody" style="margin-top:12px;color:var(--muted)"></div>
+      </div>
+    </div>
+
+    <!-- ============================
+         Founders
+    ============================= -->
+    <section id="founders" class="block reveal">
+      <h2 class="section-title">Founders</h2>
+      <p class="section-sub">A small team of designers, developers and storytellers focused on outcomes.</p>
+
+      <div style="margin-top:18px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap" class="founder-wrap">
+        <div class="founder-entry" aria-hidden="false">
+          <img class="founder-photo" src="lakshya.jpg" alt="Lakshya Acharya" loading="lazy" decoding="async">
+          <div class="founder-bio" style="margin:0">
+            <div style="font-weight:800">Lakshya Acharya — Technical Director</div>
+            <div class="small" style="margin-top:6px">Lakshya oversees the technical direction of FourForge Digital, ensuring robust architecture, seamless integrations, and scalable solutions. With expertise in backend logic, automation, and data analytics, he transforms raw data into actionable insights that drive business growth and informed decision-making.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry" aria-hidden="false">
+          <img class="founder-photo" src="swapnil.jpg" alt="Swapnil Vyas" loading="lazy" decoding="async">
+          <div class="founder-bio" style="margin:0">
+            <div style="font-weight:800">Swapnil Vyas — Digital Marketing & Content Strategy Expert</div>
+            <div class="small" style="margin-top:6px">Swapnil leads the brand communication and digital growth verticals. He specializes in digital marketing, SEO, campaign strategy, and content creation. His ability to craft compelling narratives and execute high-impact marketing strategies ensures strong brand presence and measurable results for clients.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry" aria-hidden="false">
+          <img class="founder-photo" src="tanmay.jpg" alt="Tanmay Acharya" loading="lazy" decoding="async">
+          <div class="founder-bio" style="margin:0">
+            <div style="font-weight:800">Tanmay Acharya — Creative Director (Visual Media & Branding)</div>
+            <div class="small" style="margin-top:6px">Tanmay heads the visual creative division, handling everything from logo design and brand identity to video editing, promos, and commercial shoots. His refined aesthetic sense and storytelling ability enable him to convert ideas into visually powerful brand assets.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry" aria-hidden="false">
+          <img class="founder-photo" src="keshav.jpg" alt="Keshav Tiwari" loading="lazy" decoding="async">
+          <div class="founder-bio" style="margin:0">
+            <div style="font-weight:800">Keshav Tiwari — Frontend Developer & UI Specialist</div>
+            <div class="small" style="margin-top:6px">Keshav is responsible for developing clean, modern, and user-focused interfaces. With strong frontend and design execution skills, he ensures that every digital product delivers a seamless, intuitive, and visually appealing user experience.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Pricing (brief)
+    ============================= -->
+    <section id="pricing" class="block reveal">
+      <h2 class="section-title">Pricing — Starter packages</h2>
+      <p class="section-sub">Simple, transparent and upgradeable. Custom quotes for bigger projects.</p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+        <div class="service-card" style="min-width:220px">
+          <div style="font-weight:700">Starter Logo</div>
+          <div style="font-weight:800;margin-top:8px">₹299</div>
+          <div class="small" style="margin-top:6px">1 concept • 1 revision • vector files</div>
+        </div>
+
+        <div class="service-card" style="min-width:220px;border:2px solid rgba(255,255,255,0.04)">
+          <div style="font-weight:700">One-page site</div>
+          <div style="font-weight:800;margin-top:8px">₹999</div>
+          <div class="small" style="margin-top:6px">Responsive • SEO basics • Deploy</div>
+        </div>
+
+        <div class="service-card" style="min-width:220px">
+          <div style="font-weight:700">Promo Video</div>
+          <div style="font-weight:800;margin-top:8px">₹2500</div>
+          <div class="small" style="margin-top:6px">Scripting, shoot, edit (shorts + 1 long)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Contact
+    ============================= -->
+    <section id="contact" class="block reveal">
+      <h2 class="section-title">Let's start something</h2>
+      <p class="section-sub">Tell us about your project or reach out for a strategy call. Quick replies via WhatsApp.</p>
+
+      <div class="contact-grid" style="margin-top:16px">
+        <form class="contact-card contact-form" id="contactForm" onsubmit="submitForm(event)">
+          <label class="small">Name</label>
+          <input id="name" required placeholder="Your name" />
+
+          <label class="small">Business</label>
+          <input id="business" placeholder="Business name" />
+
+          <label class="small">Service</label>
+          <select id="service">
+            <option>Website / App</option>
+            <option>UI/UX & Branding</option>
+            <option>Video Production</option>
+            <option>Data Analysis</option>
+            <option>Content & Social</option>
+          </select>
+
+          <label class="small">Budget (optional)</label>
+          <input id="budget" placeholder="₹" />
+
+          <label class="small">Message</label>
+          <textarea id="message" rows="4" placeholder="Project brief..."></textarea>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+          <button type="submit" class="btn">Send inquiry</button>
+            <button type="button" class="btn secondary" onclick="openWhatsApp()">Send on WhatsApp</button>
+          </div>
+
+          <div id="formMsg" class="small" style="margin-top:8px;color:var(--muted);display:none"></div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <div style="text-align:center;">
+        <div>© FourForge Digital</div>
+        <div class="small" style="margin-top:6px;color:var(--muted)">Designed &amp; Crafted by Lakshya Acharya (Technical Director)</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Background canvas animation: floating icons representing our expertise
+    (function(){
+      const canvas = document.getElementById('bgCanvas');
+      if(!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let W = 0, H = 0, DPR = Math.max(1, window.devicePixelRatio || 1);
+
+      function resize(){
+        W = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        H = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        canvas.width = Math.floor(W * DPR);
+        canvas.height = Math.floor(H * DPR);
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+      }
+
+      // Check prefers-reduced-motion
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduced){
+        // Draw a subtle static gradient background and exit
+        resize();
+        const g = ctx.createLinearGradient(0,0, W, H);
+        g.addColorStop(0, 'rgba(124,58,237,0.06)');
+        g.addColorStop(1, 'rgba(245,158,11,0.03)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,W,H);
+        return;
+      }
+
+      // Types of icon markers: coding, digital marketing, reels (camera), data analysis
+      const ICONS = ['coding','marketing','reels','data'];
+
+      function rand(min, max){ return Math.random() * (max - min) + min }
+
+      // Particle structure
+      const particles = [];
+      const COUNT = Math.floor((window.innerWidth * window.innerHeight) / 90000) + 10; // scale count with viewport
+
+      function makeParticle(){
+        const size = rand(18, 42);
+        return {
+          x: rand(0, W),
+          y: rand(H, H + 200),
+          vx: rand(-0.15, 0.15),
+          vy: -rand(0.2, 0.9),
+          size,
+          alpha: rand(0.18, 0.9),
+          type: ICONS[Math.floor(rand(0, ICONS.length))],
+          spin: rand(-0.002, 0.002),
+          rot: rand(0, Math.PI*2)
+        };
+      }
+
+      for(let i=0;i<COUNT;i++) particles.push(makeParticle());
+
+      function drawIcon(p){
+        const s = p.size;
+        ctx.save();
+        ctx.globalAlpha = p.alpha * 0.95;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+
+        // subtle backdrop circle
+        ctx.beginPath(); ctx.arc(0,0, s*0.6, 0, Math.PI*2); ctx.fillStyle = 'rgba(6,17,38,0.28)'; ctx.fill();
+        // gradient accent
+        const g = ctx.createLinearGradient(-s, -s, s, s);
+        g.addColorStop(0, '#7c3aed'); g.addColorStop(1, '#f59e0b');
+
+        ctx.lineWidth = Math.max(1, s*0.06);
+        ctx.strokeStyle = g;
+        ctx.fillStyle = g;
+
+        // draw a small symbol per type
+        switch(p.type){
+          case 'coding':
+            // draw a code bracket symbol </>
+            ctx.font = `${Math.round(s*0.55)}px Poppins, Inter, Arial`;
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+            ctx.fillText('</>', 0, 0);
+            break;
+          case 'marketing':
+            // megaphone with tiny sparkle (digital marketing)
+            ctx.beginPath(); ctx.moveTo(-s*0.42,-s*0.14); ctx.lineTo(-s*0.08,-s*0.34); ctx.lineTo(s*0.44,-s*0.04); ctx.lineTo(s*0.44,s*0.26); ctx.lineTo(-s*0.08,s*0.44); ctx.closePath(); ctx.fill();
+            // sparkle
+            ctx.beginPath(); ctx.moveTo(s*0.56,-s*0.18); ctx.lineTo(s*0.62,-s*0.02); ctx.lineTo(s*0.78,-s*0.06); ctx.lineTo(s*0.64, s*0.04); ctx.lineTo(s*0.68, s*0.18); ctx.lineTo(s*0.56, s*0.06); ctx.closePath(); ctx.fillStyle='rgba(255,255,255,0.06)'; ctx.fill();
+            break;
+          case 'reels':
+            // camera body + record dot (represents reels/shoot)
+            ctx.beginPath(); ctx.roundRect(-s*0.36, -s*0.22, s*0.72, s*0.44, s*0.08); ctx.fill();
+            ctx.beginPath(); ctx.arc(-s*0.02, 0, s*0.22, 0, Math.PI*2); ctx.fillStyle='rgba(6,17,38,0.12)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(-s*0.02, 0, s*0.14, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+            // small red record dot
+            ctx.beginPath(); ctx.arc(s*0.32, -s*0.14, s*0.06, 0, Math.PI*2); ctx.fillStyle = '#ff4d4d'; ctx.fill();
+            break;
+          case 'data':
+            // line chart with points
+            ctx.beginPath(); ctx.moveTo(-s*0.38, s*0.22); ctx.lineTo(-s*0.12, s*0.02); ctx.lineTo(s*0.05, s*0.12); ctx.lineTo(s*0.32, -s*0.12); ctx.stroke();
+            // points
+            ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.beginPath(); ctx.arc(-s*0.12, s*0.02, s*0.05,0,Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(s*0.05, s*0.12, s*0.05,0,Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(s*0.32, -s*0.12, s*0.05,0,Math.PI*2); ctx.fill();
+            break;
+        }
+
+        ctx.restore();
+      }
+
+      let last = performance.now();
+      function frame(t){
+        const dt = Math.min(50, t - last); last = t;
+        ctx.clearRect(0,0,W,H);
+
+        // faint background glows
+        const bgG = ctx.createLinearGradient(0,0,W,H);
+        bgG.addColorStop(0, 'rgba(124,58,237,0.02)'); bgG.addColorStop(1, 'rgba(245,158,11,0.01)');
+        ctx.fillStyle = bgG; ctx.fillRect(0,0,W,H);
+
+        for(let p of particles){
+          p.x += p.vx * (dt/16);
+          p.y += p.vy * (dt/16);
+          p.rot += p.spin * (dt/16);
+          // horizontal wrap
+          if(p.x < -80) p.x = W + 80;
+          if(p.x > W + 80) p.x = -80;
+          // if moved past top, recycle at bottom
+          if(p.y < -80){
+            Object.assign(p, makeParticle());
+            p.y = H + rand(10, 160);
+          }
+          drawIcon(p);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      requestAnimationFrame(frame);
+    })();
+    // Typing animation for the brand text (continuous loop).
+    (function(){
+      const brandFull = document.getElementById('brandFull');
+      const brandTextEl = document.getElementById('brandText');
+      if(!brandFull || !brandTextEl) return;
+
+      // Indicate we're using typing mode so other brand animations can stop
+      window._brandMode = 'typing';
+
+      // Respect reduced motion
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fullText = brandFull.getAttribute('data-text') || 'FourForge Digital';
+      if(prefersReduced){
+        // show full text and don't animate
+        brandTextEl.textContent = fullText;
+        window._brandMode = 'default';
+        return;
+      }
+
+      let idx = 0;
+      const typingSpeed = 80; // ms per char
+      const initialDelay = 350; // start delay
+      const pauseAfterFull = 5000; // ms pause after full text before restarting (30s hold)
+
+      function typeNext(){
+        if(idx <= fullText.length){
+          brandTextEl.textContent = fullText.slice(0, idx);
+          idx++;
+          setTimeout(typeNext, typingSpeed);
+        } else {
+          // fully typed -> wait a short pause, clear instantly and restart
+          setTimeout(()=>{
+            brandTextEl.textContent = '';
+            idx = 0;
+            setTimeout(typeNext, typingSpeed);
+          }, pauseAfterFull);
+        }
+      }
+
+      // Start typing after a short delay
+      setTimeout(()=>{ typeNext(); }, initialDelay);
+    })();
+  </script>
+
+  <!-- ============================
+       Scripts (animations, UI)
+  ============================= -->
+  <script>
+    // tiny helper: show reveals by intersection observer
+    (function(){
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if(e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
+        });
+      }, {threshold:0.12});
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    })();
+
+    // Mock slide text rotation with fade animation and active dot indicator
+    (function(){
+      const slides = [
+        'Stunning Websites • Fast • Responsive',
+        'Pixel-perfect UI/UX • Conversion focused',
+        'Video Production • Reels & Promo Cuts'
+      ];
+      let i = 0;
+      const el = document.getElementById('mockSlides');
+      const dots = document.querySelectorAll('.mock-controls .dot');
+      function showSlide(idx){
+        if(!el) return;
+        // fade out
+        el.classList.remove('fade-in');
+        el.classList.add('fade-out');
+        // update dots
+        dots.forEach((d,di)=> d.classList.toggle('active', di === idx));
+        setTimeout(()=>{
+          el.textContent = slides[idx];
+          el.classList.remove('fade-out');
+          el.classList.add('fade-in');
+        }, 260);
+      }
+      // init
+      if(el) el.textContent = slides[0];
+      if(dots && dots[0]) dots[0].classList.add('active');
+      setInterval(()=>{ i=(i+1)%slides.length; showSlide(i); }, 3200);
+    })();
+
+    // portfolio modal content (example)
+    const projects = {
+      1: {title:'Cafe Website', body:'One-page website with menu, booking widget and mobile-first UI. Result: +23% bookings in first month.'},
+      2: {title:'Sweets Brand Identity', body:'Full pack: logo, packaging, social kit. Result: 8 retail stores adopted the packaging.'},
+      3: {title:'Promo Film', body:'60s product promo + vertical reels. Optimized cut for FB/IG/TikTok.'},
+      4: {title:'Clinic Site', body:'Multi-page site with service pages, contact forms and SEO basics.'},
+      5: {title:'Retail Packaging', body:'Shelf-ready packaging design and dielines.'},
+      6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
+    };
+    // Active modal reference for focus trapping
+    let activeModal = null;
+
+    function activateModal(modal){
+      if(!modal) return;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+      activeModal = modal;
+      // focus the first focusable element in the modal
+      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if(focusable.length) focusable[0].focus();
+    }
+    function deactivateModal(modal){
+      if(!modal) return;
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden','true');
+      if(activeModal === modal) activeModal = null;
+    }
+
+    function openProject(id){
+      const modal = document.getElementById('projModal');
+      document.getElementById('projTitle').textContent = projects[id].title;
+      document.getElementById('projBody').textContent = projects[id].body;
+      activateModal(modal);
+    }
+    function closeProject(){ deactivateModal(document.getElementById('projModal')); }
+
+    // filter portfolio
+    function filterPortfolio(t){
+      document.querySelectorAll('#portfolioGrid .proj').forEach(p=>{
+        if(t==='all') p.style.display='';
+        else p.style.display = (p.dataset.type===t)? '' : 'none';
+      });
+    }
+
+    // mobile menu helper
+    function mobileClose(){
+      const m = document.getElementById('mobileMenu');
+      m.classList.remove('show');
+      m.setAttribute('aria-hidden','true');
+    }
+
+    // allow closing mobile menu by clicking on the overlay area
+    (function(){
+      const mm = document.getElementById('mobileMenu');
+      if(mm){
+        mm.addEventListener('click', function(e){
+          if(e.target === mm) mobileClose();
+        });
+      }
+    })();
+
+    // Simple focus-trap: keep Tab cycling inside active modal
+    document.addEventListener('keydown', function(e){
+      if(!activeModal) return;
+      if(e.key === 'Tab'){
+        const focusable = Array.from(activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+          .filter(el => !el.hasAttribute('disabled'));
+        if(focusable.length === 0) { e.preventDefault(); return; }
+        const first = focusable[0];
+        const last = focusable[focusable.length -1];
+        if(!e.shiftKey && document.activeElement === last){
+          e.preventDefault(); first.focus();
+        } else if(e.shiftKey && document.activeElement === first){
+          e.preventDefault(); last.focus();
+        }
+      }
+      // Escape closes the active modal (or project modal)
+      if(e.key === 'Escape'){
+        if(activeModal) deactivateModal(activeModal);
+        // also ensure mobile menu closes
+        const mm = document.getElementById('mobileMenu'); if(mm && mm.classList.contains('show')) mobileClose();
+      }
+    });
+
+    // WhatsApp open (replace number below)
+    const WHATSAPP_NUMBER = '919999999999'; // <-- replace with your number in international format (no +)
+    function openWhatsApp(){
+      const text = encodeURIComponent('Hi FourForge, I want a quote for my project. Please advise.');
+      const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+      window.open(url, '_blank');
+    }
+
+    // Contact submit (client-side) — build mailto and open user's email client
+    function submitForm(e){
+      e.preventDefault();
+      const payload = {
+        name: document.getElementById('name').value || '',
+        business: document.getElementById('business').value || '',
+        service: document.getElementById('service').value || '',
+        budget: document.getElementById('budget').value || '',
+        message: document.getElementById('message').value || ''
+      };
+
+      // Basic validation: require at least a name or message
+      if(!payload.name && !payload.message){
+        const fmErr = document.getElementById('formMsg');
+        fmErr.style.display='block'; fmErr.textContent = 'Please enter your name or a short message before sending.';
+        return;
+      }
+
+      const to = 'fourforgedigital@gmail.com';
+      const subject = encodeURIComponent(`Website enquiry from ${payload.name || 'Website visitor'}`);
+      const bodyLines = [
+        `Name: ${payload.name}`,
+        `Business: ${payload.business}`,
+        `Service: ${payload.service}`,
+        `Budget: ${payload.budget}`,
+        '',
+        'Message:',
+        `${payload.message}`
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+
+      const fm = document.getElementById('formMsg');
+      fm.style.display='block'; fm.textContent = 'Opening your email client to send the enquiry...';
+
+      // Open the user's mail client with prefilled email
+      window.location.href = mailto;
+    }
+
+    // Brand animation controller (FFD jump -> expand -> collapse), respects reduced-motion
+    (function(){
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // If another script requests typing mode, skip this brandLoop to avoid conflicts
+      if(window._brandMode === 'typing') return;
+      const container = document.getElementById('brandAnim');
+      const ffd = document.getElementById('brandFFD');
+      const full = document.getElementById('brandFull');
+
+      // Timing config (ms)
+      const TIMINGS = {
+        jump: 850,
+        revealDelay: 50,
+        revealTrans: 450,
+        hold: 1500,
+        collapseDelay: 150
+      };
+
+      function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+      function lockBrandWidth(){
+        if(!container || !ffd || !full) return;
+        // show full briefly to measure width
+        const prevFullOpacity = full.style.opacity;
+        full.style.opacity = '1'; full.style.transform = 'scale(1)';
+        const w1 = Math.ceil(full.getBoundingClientRect().width);
+        const w2 = Math.ceil(ffd.getBoundingClientRect().width);
+        const finalW = Math.max(w1, w2);
+        container.style.width = finalW + 'px';
+        // revert
+        full.style.opacity = prevFullOpacity;
+        full.style.transform = '';
+      }
+
+      async function brandLoop(){
+        if(!container || !ffd || !full) return;
+        if(reduced){ container.classList.add('show-full'); ffd.classList.remove('jump'); return; }
+        lockBrandWidth();
+        while(true){
+          container.classList.remove('show-full');
+          ffd.classList.remove('jump'); void ffd.offsetWidth; ffd.classList.add('jump');
+          await wait(TIMINGS.jump);
+          await wait(TIMINGS.revealDelay);
+          container.classList.add('show-full');
+          ffd.classList.remove('jump');
+          await wait(TIMINGS.hold);
+          container.classList.remove('show-full');
+          await wait(TIMINGS.revealTrans + TIMINGS.collapseDelay);
+        }
+      }
+
+      if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brandLoop);
+      else brandLoop();
+
+      // relock width on resize (debounced)
+      let rt = null; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ container.style.width=''; lockBrandWidth(); }, 180); });
+    })();
+
+      // --- Section highlight on nav hover/focus ---
+      (function(){
+        // Respect reduced motion
+        if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        // Inject small helper styles for the highlighted section
+        try{
+          const s = document.createElement('style');
+          s.textContent = '\n          .section-highlight{ transform: translateY(-6px); box-shadow: 0 30px 80px rgba(124,58,237,0.06); transition: transform .36s ease, box-shadow .36s ease; border-radius:12px; }\n          @keyframes sectionPulse { 0%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } 50%{ box-shadow:0 30px 80px rgba(124,58,237,0.06) } 100%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } }\n          .section-highlight.pulse{ animation: sectionPulse 1.6s ease-in-out; }\n          @media (prefers-reduced-motion: reduce){ .section-highlight, .section-highlight.pulse{ transition:none; animation:none } }\n        ';
+          document.head.appendChild(s);
+        }catch(e){ /* ignore */ }
+
+        // Bind nav links that target sections (href starts with '#')
+        const links = document.querySelectorAll('nav.links a[href^="#"]');
+        links.forEach(a => {
+          const href = a.getAttribute('href'); if(!href || href.length < 2) return;
+          const id = href.slice(1); const target = document.getElementById(id); if(!target) return;
+          let t = null;
+          function add(){ clearTimeout(t); target.classList.add('section-highlight'); target.classList.add('pulse'); setTimeout(()=> target.classList.remove('pulse'), 1600); }
+          function remove(){ clearTimeout(t); t = setTimeout(()=> target.classList.remove('section-highlight'), 320); }
+          a.addEventListener('mouseenter', add); a.addEventListener('mouseleave', remove);
+          a.addEventListener('focus', add); a.addEventListener('blur', remove);
+        });
+      })();
+  </script>
+</body>
+</html>
+
