@@ -868,277 +868,273 @@
           idx++;
           setTimeout(typeNext, typingSpeed);
         } else {
-          // fully typed -> wait a short pause, clear instantly and restart
-          setTimeout(()=>{
-            brandTextEl.textContent = '';
+          // pause before restarting
+          setTimeout(() => {
             idx = 0;
-            setTimeout(typeNext, typingSpeed);
+            typeNext();
           }, pauseAfterFull);
         }
       }
-
-      // Start typing after a short delay
-      setTimeout(()=>{ typeNext(); }, initialDelay);
-
-  <!-- ============================
-       Scripts (animations, UI)
-  ============================= -->
-  <script>
-    // tiny helper: show reveals by intersection observer
-    (function(){
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if(e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
-        });
-      }, {threshold:0.12});
-      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      setTimeout(typeNext, initialDelay);
     })();
 
-    // Mock slide text rotation with fade animation and active dot indicator
-    (function(){
-      const slides = [
-        'Stunning Websites • Fast • Responsive',
-        'Pixel-perfect UI/UX • Conversion focused',
-        'Video Production • Reels & Promo Cuts'
-      ];
-      let i = 0;
-      const el = document.getElementById('mockSlides');
-      const dots = document.querySelectorAll('.mock-controls .dot');
-      function showSlide(idx){
-        if(!el) return;
-        // fade out
-        el.classList.remove('fade-in');
-        el.classList.add('fade-out');
-        // update dots
-        dots.forEach((d,di)=> d.classList.toggle('active', di === idx));
-        setTimeout(()=>{
-          el.textContent = slides[idx];
-          el.classList.remove('fade-out');
-          el.classList.add('fade-in');
-        }, 260);
-      }
-      // init
-      if(el) el.textContent = slides[0];
-      if(dots && dots[0]) dots[0].classList.add('active');
-      setInterval(()=>{ i=(i+1)%slides.length; showSlide(i); }, 3200);
-    })();
+  /* ============================
+     Scripts (animations, UI)
+  ============================ */
+  // tiny helper: show reveals by intersection observer
+  (function(){
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
 
-    // portfolio modal content (example)
-    const projects = {
-      1: {title:'Cafe Website', body:'One-page website with menu, booking widget and mobile-first UI. Result: +23% bookings in first month.'},
-      2: {title:'Sweets Brand Identity', body:'Full pack: logo, packaging, social kit. Result: 8 retail stores adopted the packaging.'},
-      3: {title:'Promo Film', body:'60s product promo + vertical reels. Optimized cut for FB/IG/TikTok.'},
-      4: {title:'Clinic Site', body:'Multi-page site with service pages, contact forms and SEO basics.'},
-      5: {title:'Retail Packaging', body:'Shelf-ready packaging design and dielines.'},
-      6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
-    };
-    // Active modal reference for focus trapping
-    let activeModal = null;
-
-    function activateModal(modal){
-      if(!modal) return;
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
-      activeModal = modal;
-      // focus the first focusable element in the modal
-      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if(focusable.length) focusable[0].focus();
+  // Mock slide text rotation with fade animation and active dot indicator
+  (function(){
+    const slides = [
+      'Stunning Websites • Fast • Responsive',
+      'Pixel-perfect UI/UX • Conversion focused',
+      'Video Production • Reels & Promo Cuts'
+    ];
+    let i = 0;
+    const el = document.getElementById('mockSlides');
+    const dots = document.querySelectorAll('.mock-controls .dot');
+    function showSlide(idx){
+      if(!el) return;
+      // fade out
+      el.classList.remove('fade-in');
+      el.classList.add('fade-out');
+      // update dots
+      dots.forEach((d,di)=> d.classList.toggle('active', di === idx));
+      setTimeout(()=>{
+        el.textContent = slides[idx];
+        el.classList.remove('fade-out');
+        el.classList.add('fade-in');
+      }, 260);
     }
-    function deactivateModal(modal){
-      if(!modal) return;
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      if(activeModal === modal) activeModal = null;
-    }
+    // init
+    if(el) el.textContent = slides[0];
+    if(dots && dots[0]) dots[0].classList.add('active');
+    setInterval(()=>{ i=(i+1)%slides.length; showSlide(i); }, 3200);
+  })();
 
-    function openProject(id){
-      const modal = document.getElementById('projModal');
-      document.getElementById('projTitle').textContent = projects[id].title;
-      document.getElementById('projBody').textContent = projects[id].body;
-      activateModal(modal);
-    }
-    function closeProject(){ deactivateModal(document.getElementById('projModal')); }
+  // portfolio modal content (example)
+  const projects = {
+    1: {title:'Cafe Website', body:'One-page website with menu, booking widget and mobile-first UI. Result: +23% bookings in first month.'},
+    2: {title:'Sweets Brand Identity', body:'Full pack: logo, packaging, social kit. Result: 8 retail stores adopted the packaging.'},
+    3: {title:'Promo Film', body:'60s product promo + vertical reels. Optimized cut for FB/IG/TikTok.'},
+    4: {title:'Clinic Site', body:'Multi-page site with service pages, contact forms and SEO basics.'},
+    5: {title:'Retail Packaging', body:'Shelf-ready packaging design and dielines.'},
+    6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
+  };
+  // Active modal reference for focus trapping
+  let activeModal = null;
 
-    // filter portfolio
-    function filterPortfolio(t){
-      document.querySelectorAll('#portfolioGrid .proj').forEach(p=>{
-        if(t==='all') p.style.display='';
-        else p.style.display = (p.dataset.type===t)? '' : 'none';
+  function activateModal(modal){
+    if(!modal) return;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    activeModal = modal;
+    // focus the first focusable element in the modal
+    const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if(focusable.length) focusable[0].focus();
+  }
+  function deactivateModal(modal){
+    if(!modal) return;
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    if(activeModal === modal) activeModal = null;
+  }
+
+  function openProject(id){
+    const modal = document.getElementById('projModal');
+    document.getElementById('projTitle').textContent = projects[id].title;
+    document.getElementById('projBody').textContent = projects[id].body;
+    activateModal(modal);
+  }
+  function closeProject(){ deactivateModal(document.getElementById('projModal')); }
+
+  // filter portfolio
+  function filterPortfolio(t){
+    document.querySelectorAll('#portfolioGrid .proj').forEach(p=>{
+      if(t==='all') p.style.display='';
+      else p.style.display = (p.dataset.type===t)? '' : 'none';
+    });
+  }
+
+  // mobile menu helper
+  function mobileClose(){
+    const m = document.getElementById('mobileMenu');
+    m.classList.remove('show');
+    m.setAttribute('aria-hidden','true');
+  }
+
+  // allow closing mobile menu by clicking on the overlay area
+  (function(){
+    const mm = document.getElementById('mobileMenu');
+    if(mm){
+      mm.addEventListener('click', function(e){
+        if(e.target === mm) mobileClose();
       });
     }
+  })();
 
-    // mobile menu helper
-    function mobileClose(){
-      const m = document.getElementById('mobileMenu');
-      m.classList.remove('show');
-      m.setAttribute('aria-hidden','true');
+  // Simple focus-trap: keep Tab cycling inside active modal
+  document.addEventListener('keydown', function(e){
+    if(!activeModal) return;
+    if(e.key === 'Tab'){
+      const focusable = Array.from(activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled'));
+      if(focusable.length === 0) { e.preventDefault(); return; }
+      const first = focusable[0];
+      const last = focusable[focusable.length -1];
+      if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      } else if(e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      }
+    }
+    // Escape closes the active modal (or project modal)
+    if(e.key === 'Escape'){
+      if(activeModal) deactivateModal(activeModal);
+      // also ensure mobile menu closes
+      const mm = document.getElementById('mobileMenu'); if(mm && mm.classList.contains('show')) mobileClose();
+    }
+  });
+
+  // WhatsApp open (replace number below)
+  const WHATSAPP_NUMBER = '919999999999'; // <-- replace with your number in international format (no +)
+  function openWhatsApp(){
+    const text = encodeURIComponent('Hi FourForge, I want a quote for my project. Please advise.');
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+    window.open(url, '_blank');
+  }
+
+  // Contact submit (client-side) — build mailto and open user's email client
+  function submitForm(e){
+    e.preventDefault();
+    const payload = {
+      name: document.getElementById('name').value || '',
+      business: document.getElementById('business').value || '',
+      service: document.getElementById('service').value || '',
+      budget: document.getElementById('budget').value || '',
+      message: document.getElementById('message').value || ''
+    };
+
+    // Basic validation: require at least a name or message
+    if(!payload.name && !payload.message){
+      const fmErr = document.getElementById('formMsg');
+      fmErr.style.display='block'; fmErr.textContent = 'Please enter your name or a short message before sending.';
+      return;
     }
 
-    // allow closing mobile menu by clicking on the overlay area
+    const to = 'fourforgedigital@gmail.com';
+    const subject = encodeURIComponent(`Website enquiry from ${payload.name || 'Website visitor'}`);
+    const bodyLines = [
+      `Name: ${payload.name}`,
+      `Business: ${payload.business}`,
+      `Service: ${payload.service}`,
+      `Budget: ${payload.budget}`,
+      '',
+      'Message:',
+      `${payload.message}`
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+
+    const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    const fm = document.getElementById('formMsg');
+    fm.style.display='block'; fm.textContent = 'Opening your email client to send the enquiry...';
+
+    // Open the user's mail client with prefilled email
+    window.location.href = mailto;
+  }
+
+  // Brand animation controller (FFD jump -> expand -> collapse), respects reduced-motion
+  (function(){
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // If another script requests typing mode, skip this brandLoop to avoid conflicts
+    if(window._brandMode === 'typing') return;
+    const container = document.getElementById('brandAnim');
+    const ffd = document.getElementById('brandFFD');
+    const full = document.getElementById('brandFull');
+
+    // Timing config (ms)
+    const TIMINGS = {
+      jump: 850,
+      revealDelay: 50,
+      revealTrans: 450,
+      hold: 1500,
+      collapseDelay: 150
+    };
+
+    function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+    function lockBrandWidth(){
+      if(!container || !ffd || !full) return;
+      // show full briefly to measure width
+      const prevFullOpacity = full.style.opacity;
+      full.style.opacity = '1'; full.style.transform = 'scale(1)';
+      const w1 = Math.ceil(full.getBoundingClientRect().width);
+      const w2 = Math.ceil(ffd.getBoundingClientRect().width);
+      const finalW = Math.max(w1, w2);
+      container.style.width = finalW + 'px';
+      // revert
+      full.style.opacity = prevFullOpacity;
+      full.style.transform = '';
+    }
+
+    async function brandLoop(){
+      if(!container || !ffd || !full) return;
+      if(reduced){ container.classList.add('show-full'); ffd.classList.remove('jump'); return; }
+      lockBrandWidth();
+      while(true){
+        container.classList.remove('show-full');
+        ffd.classList.remove('jump'); void ffd.offsetWidth; ffd.classList.add('jump');
+        await wait(TIMINGS.jump);
+        await wait(TIMINGS.revealDelay);
+        container.classList.add('show-full');
+        ffd.classList.remove('jump');
+        await wait(TIMINGS.hold);
+        container.classList.remove('show-full');
+        await wait(TIMINGS.revealTrans + TIMINGS.collapseDelay);
+      }
+    }
+
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brandLoop);
+    else brandLoop();
+
+    // relock width on resize (debounced)
+    let rt = null; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ container.style.width=''; lockBrandWidth(); }, 180); });
+  })();
+
+    // --- Section highlight on nav hover/focus ---
     (function(){
-      const mm = document.getElementById('mobileMenu');
-      if(mm){
-        mm.addEventListener('click', function(e){
-          if(e.target === mm) mobileClose();
-        });
-      }
+      // Respect reduced motion
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // Inject small helper styles for the highlighted section
+      try{
+        const s = document.createElement('style');
+        s.textContent = '\n          .section-highlight{ transform: translateY(-6px); box-shadow: 0 30px 80px rgba(124,58,237,0.06); transition: transform .36s ease, box-shadow .36s ease; border-radius:12px; }\n          @keyframes sectionPulse { 0%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } 50%{ box-shadow:0 30px 80px rgba(124,58,237,0.06) } 100%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } }\n          .section-highlight.pulse{ animation: sectionPulse 1.6s ease-in-out; }\n          @media (prefers-reduced-motion: reduce){ .section-highlight, .section-highlight.pulse{ transition:none; animation:none } }\n        ';
+        document.head.appendChild(s);
+      }catch(e){ /* ignore */ }
+
+      // Bind nav links that target sections (href starts with '#')
+      const links = document.querySelectorAll('nav.links a[href^="#"]');
+      links.forEach(a => {
+        const href = a.getAttribute('href'); if(!href || href.length < 2) return;
+        const id = href.slice(1); const target = document.getElementById(id); if(!target) return;
+        let t = null;
+        function add(){ clearTimeout(t); target.classList.add('section-highlight'); target.classList.add('pulse'); setTimeout(()=> target.classList.remove('pulse'), 1600); }
+        function remove(){ clearTimeout(t); t = setTimeout(()=> target.classList.remove('section-highlight'), 320); }
+        a.addEventListener('mouseenter', add); a.addEventListener('mouseleave', remove);
+        a.addEventListener('focus', add); a.addEventListener('blur', remove);
+      });
     })();
-
-    // Simple focus-trap: keep Tab cycling inside active modal
-    document.addEventListener('keydown', function(e){
-      if(!activeModal) return;
-      if(e.key === 'Tab'){
-        const focusable = Array.from(activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
-          .filter(el => !el.hasAttribute('disabled'));
-        if(focusable.length === 0) { e.preventDefault(); return; }
-        const first = focusable[0];
-        const last = focusable[focusable.length -1];
-        if(!e.shiftKey && document.activeElement === last){
-          e.preventDefault(); first.focus();
-        } else if(e.shiftKey && document.activeElement === first){
-          e.preventDefault(); last.focus();
-        }
-      }
-      // Escape closes the active modal (or project modal)
-      if(e.key === 'Escape'){
-        if(activeModal) deactivateModal(activeModal);
-        // also ensure mobile menu closes
-        const mm = document.getElementById('mobileMenu'); if(mm && mm.classList.contains('show')) mobileClose();
-      }
-    });
-
-    // WhatsApp open (replace number below)
-    const WHATSAPP_NUMBER = '919999999999'; // <-- replace with your number in international format (no +)
-    function openWhatsApp(){
-      const text = encodeURIComponent('Hi FourForge, I want a quote for my project. Please advise.');
-      const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
-      window.open(url, '_blank');
-    }
-
-    // Contact submit (client-side) — build mailto and open user's email client
-    function submitForm(e){
-      e.preventDefault();
-      const payload = {
-        name: document.getElementById('name').value || '',
-        business: document.getElementById('business').value || '',
-        service: document.getElementById('service').value || '',
-        budget: document.getElementById('budget').value || '',
-        message: document.getElementById('message').value || ''
-      };
-
-      // Basic validation: require at least a name or message
-      if(!payload.name && !payload.message){
-        const fmErr = document.getElementById('formMsg');
-        fmErr.style.display='block'; fmErr.textContent = 'Please enter your name or a short message before sending.';
-        return;
-      }
-
-      const to = 'fourforgedigital@gmail.com';
-      const subject = encodeURIComponent(`Website enquiry from ${payload.name || 'Website visitor'}`);
-      const bodyLines = [
-        `Name: ${payload.name}`,
-        `Business: ${payload.business}`,
-        `Service: ${payload.service}`,
-        `Budget: ${payload.budget}`,
-        '',
-        'Message:',
-        `${payload.message}`
-      ];
-      const body = encodeURIComponent(bodyLines.join('\n'));
-
-      const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
-
-      const fm = document.getElementById('formMsg');
-      fm.style.display='block'; fm.textContent = 'Opening your email client to send the enquiry...';
-
-      // Open the user's mail client with prefilled email
-      window.location.href = mailto;
-    }
-
-    // Brand animation controller (FFD jump -> expand -> collapse), respects reduced-motion
-    (function(){
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      // If another script requests typing mode, skip this brandLoop to avoid conflicts
-      if(window._brandMode === 'typing') return;
-      const container = document.getElementById('brandAnim');
-      const ffd = document.getElementById('brandFFD');
-      const full = document.getElementById('brandFull');
-
-      // Timing config (ms)
-      const TIMINGS = {
-        jump: 850,
-        revealDelay: 50,
-        revealTrans: 450,
-        hold: 1500,
-        collapseDelay: 150
-      };
-
-      function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
-
-      function lockBrandWidth(){
-        if(!container || !ffd || !full) return;
-        // show full briefly to measure width
-        const prevFullOpacity = full.style.opacity;
-        full.style.opacity = '1'; full.style.transform = 'scale(1)';
-        const w1 = Math.ceil(full.getBoundingClientRect().width);
-        const w2 = Math.ceil(ffd.getBoundingClientRect().width);
-        const finalW = Math.max(w1, w2);
-        container.style.width = finalW + 'px';
-        // revert
-        full.style.opacity = prevFullOpacity;
-        full.style.transform = '';
-      }
-
-      async function brandLoop(){
-        if(!container || !ffd || !full) return;
-        if(reduced){ container.classList.add('show-full'); ffd.classList.remove('jump'); return; }
-        lockBrandWidth();
-        while(true){
-          container.classList.remove('show-full');
-          ffd.classList.remove('jump'); void ffd.offsetWidth; ffd.classList.add('jump');
-          await wait(TIMINGS.jump);
-          await wait(TIMINGS.revealDelay);
-          container.classList.add('show-full');
-          ffd.classList.remove('jump');
-          await wait(TIMINGS.hold);
-          container.classList.remove('show-full');
-          await wait(TIMINGS.revealTrans + TIMINGS.collapseDelay);
-        }
-      }
-
-      if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brandLoop);
-      else brandLoop();
-
-      // relock width on resize (debounced)
-      let rt = null; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ container.style.width=''; lockBrandWidth(); }, 180); });
-    })();
-
-      // --- Section highlight on nav hover/focus ---
-      (function(){
-        // Respect reduced motion
-        if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-        // Inject small helper styles for the highlighted section
-        try{
-          const s = document.createElement('style');
-          s.textContent = '\n          .section-highlight{ transform: translateY(-6px); box-shadow: 0 30px 80px rgba(124,58,237,0.06); transition: transform .36s ease, box-shadow .36s ease; border-radius:12px; }\n          @keyframes sectionPulse { 0%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } 50%{ box-shadow:0 30px 80px rgba(124,58,237,0.06) } 100%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } }\n          .section-highlight.pulse{ animation: sectionPulse 1.6s ease-in-out; }\n          @media (prefers-reduced-motion: reduce){ .section-highlight, .section-highlight.pulse{ transition:none; animation:none } }\n        ';
-          document.head.appendChild(s);
-        }catch(e){ /* ignore */ }
-
-        // Bind nav links that target sections (href starts with '#')
-        const links = document.querySelectorAll('nav.links a[href^="#"]');
-        links.forEach(a => {
-          const href = a.getAttribute('href'); if(!href || href.length < 2) return;
-          const id = href.slice(1); const target = document.getElementById(id); if(!target) return;
-          let t = null;
-          function add(){ clearTimeout(t); target.classList.add('section-highlight'); target.classList.add('pulse'); setTimeout(()=> target.classList.remove('pulse'), 1600); }
-          function remove(){ clearTimeout(t); t = setTimeout(()=> target.classList.remove('section-highlight'), 320); }
-          a.addEventListener('mouseenter', add); a.addEventListener('mouseleave', remove);
-          a.addEventListener('focus', add); a.addEventListener('blur', remove);
-        });
-      })();
   </script>
 </body>
 </html>
-
 
