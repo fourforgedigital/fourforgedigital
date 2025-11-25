@@ -359,11 +359,11 @@
           <button class="btn secondary" onclick="document.location='#portfolio'">See our work</button>
         </div>
 
-        <div class="stats" style="margin-top:20px">
-          <div class="stat">100+ Projects</div>
-          <div class="stat">50+ Happy Clients</div>
-          <div class="stat">Avg Turnaround 2–7 days</div>
-        </div>
+<div class="stats" style="margin-top:20px">
+  <div class="stat" id="projectsCount">20+ Projects</div>
+  <div class="stat" id="clientsCount">50+ Happy Clients</div>
+  <div class="stat">Avg Turnaround 2–7 days</div>
+</div>
       </div>
 
       <div class="hero-right">
@@ -665,9 +665,38 @@
         </div>
       </div>
     </footer>
+
   </main>
 
   <script>
+    // Animate counts from 0 to target number on page load
+    function animateCount(el, target, suffix = '', duration = 2000) {
+      let start = null;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const current = Math.min(Math.floor((progress / duration) * target), target);
+        el.textContent = current + suffix;
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = target + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const projectsEl = document.getElementById('projectsCount');
+      const clientsEl = document.getElementById('clientsCount');
+      if (projectsEl) {
+        animateCount(projectsEl, 20, '+ Projects');
+      }
+      if (clientsEl) {
+        animateCount(clientsEl, 50, '+ Happy Clients');
+      }
+    });
+
     // Background canvas animation: floating icons representing our expertise
     (function(){
       const canvas = document.getElementById('bgCanvas');
@@ -1113,7 +1142,4 @@
   </script>
 </body>
 </html>
-
-
-
 
