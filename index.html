@@ -1194,16 +1194,20 @@ To give your brand a powerful, memorable, and professional identity in the digi
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
-    const button = document.getElementById('themeToggle');
-    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    const buttons = document.querySelectorAll('.theme-toggle');
+    buttons.forEach(button => {
+      button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
   }
 
   // Set initial theme on page load
   window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
-    const button = document.getElementById('themeToggle');
-    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    const buttons = document.querySelectorAll('.theme-toggle');
+    buttons.forEach(button => {
+      button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    });
   });
 
   // WhatsApp open (replace number below)
