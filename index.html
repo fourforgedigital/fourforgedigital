@@ -359,8 +359,8 @@
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
        <a href="#tools">Tools</a>
-      <a href="#founders">Founders</a>
-      <a href="#" class="bored" onclick="openBoredModal()">Bored?</a>
+      <a href="about.html">About us</a>
+      <a href="#" onclick="openBoredModal()">Bored?</a>
       <a href="#contact" class="cta">Get Quote</a>
       <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle" onclick="toggleTheme()">🌙</button>
     </nav>
@@ -378,7 +378,7 @@
         <a class="mobile-link" href="#services" onclick="mobileClose()">Services</a>
         <a class="mobile-link" href="#portfolio" onclick="mobileClose()">Portfolio</a>
         <a class="mobile-link" href="#tools" onclick="mobileClose()">Tools</a>
-        <a class="mobile-link" href="#founders" onclick="mobileClose()">Founders</a>
+        <a class="mobile-link" href="about.html" onclick="mobileClose()">About us</a>
         <a class="mobile-link" href="#" onclick="mobileClose(); openBoredModal()">Bored?</a>
         <a class="mobile-link" href="#contact" onclick="mobileClose()">Contact</a>
         <button class="theme-toggle" onclick="toggleTheme(); mobileClose()" aria-label="Toggle theme" style="position:absolute; left:12px; top:12px; display:block; padding:10px 0; font-weight:700;">🌙</button>
@@ -606,47 +606,7 @@ To give your brand a powerful, memorable, and professional identity in the digi
       </div>
     </div>
 
-    <!-- ============================
-         Founders
-    ============================= -->
-    <section id="founders" class="block reveal">
-      <h2 class="section-title">Founders</h2>
-      <p class="section-sub">A small team of designers, developers and storytellers focused on outcomes.</p>
 
-      <div style="margin-top:18px; display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap" class="founder-wrap">
-        <div class="founder-entry" aria-hidden="false">
-          <img class="founder-photo" src="lakshya.jpg" alt="Lakshya Acharya" loading="lazy" decoding="async">
-          <div class="founder-bio" style="margin:0">
-            <div style="font-weight:800">Lakshya Acharya — Technical Director</div>
-            <div class="small" style="margin-top:6px">Lakshya oversees the technical direction of FourForge Digital, ensuring robust architecture, seamless integrations, and scalable solutions. With expertise in backend logic, automation, and data analytics, he transforms raw data into actionable insights that drive business growth and informed decision-making.</div>
-          </div>
-        </div>
-
-        <div class="founder-entry" aria-hidden="false">
-          <img class="founder-photo" src="swapnil.jpg" alt="Swapnil Vyas" loading="lazy" decoding="async">
-          <div class="founder-bio" style="margin:0">
-            <div style="font-weight:800">Swapnil Vyas — Digital Marketing & Content Strategy Expert</div>
-            <div class="small" style="margin-top:6px">Swapnil leads the brand communication and digital growth verticals. He specializes in digital marketing, SEO, campaign strategy, and content creation. His ability to craft compelling narratives and execute high-impact marketing strategies ensures strong brand presence and measurable results for clients.</div>
-          </div>
-        </div>
-
-        <div class="founder-entry" aria-hidden="false">
-          <img class="founder-photo" src="tanmay.jpg" alt="Tanmay Acharya" loading="lazy" decoding="async">
-          <div class="founder-bio" style="margin:0">
-            <div style="font-weight:800">Tanmay Acharya — Creative Director (Visual Media & Branding)</div>
-            <div class="small" style="margin-top:6px">Tanmay heads the visual creative division, handling everything from logo design and brand identity to video editing, promos, and commercial shoots. His refined aesthetic sense and storytelling ability enable him to convert ideas into visually powerful brand assets.</div>
-          </div>
-        </div>
-
-        <div class="founder-entry" aria-hidden="false">
-          <img class="founder-photo" src="keshav.jpg" alt="Keshav Tiwari" loading="lazy" decoding="async">
-          <div class="founder-bio" style="margin:0">
-            <div style="font-weight:800">Keshav Tiwari — Frontend Developer & UI Specialist</div>
-            <div class="small" style="margin-top:6px">Keshav is responsible for developing clean, modern, and user-focused interfaces. With strong frontend and design execution skills, he ensures that every digital product delivers a seamless, intuitive, and visually appealing user experience.</div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ============================
          Pricing (brief)
@@ -1284,6 +1244,17 @@ To give your brand a powerful, memorable, and professional identity in the digi
         a.addEventListener('focus', add); a.addEventListener('blur', remove);
       });
     })();
+
+    // Disable right-click and inspect element shortcuts
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
+        e.preventDefault();
+      }
+    });
   </script>
 </body>
 </html>
