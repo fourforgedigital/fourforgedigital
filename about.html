@@ -1,0 +1,1074 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Us — FourForge Digital</title>
+  <meta name="description" content="Learn about FourForge Digital — our mission, team, and commitment to delivering premium digital solutions." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="canonical" href="https://fourforgedigital.github.io/fourforgedigital/about.html">
+  <meta property="og:title" content="FourForge Digital — Creative Tech & Digital Marketing Agency">
+  <meta property="og:description" content="Official website of FourForge Digital, founded by Lakshya Acharya. We provide web development, digital marketing, reels editing and branding solutions.">
+  <meta property="og:url" content="https://fourforgedigital.github.io/fourforgedigital/">
+  <meta property="og:type" content="website">
+  <meta name="copyright" content="© 2025 FourForge Digital. All Rights Reserved.">
+  <meta name="author" content="FourForge Digital">
+
+  <!-- ====== Fonts (Google) ====== -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------
+       Brand colors & variables
+    --------------------------*/
+    :root{
+      --bg: #ffffff;             /* white background */
+      --card: #f8fafc;           /* light gray card */
+      --muted: #1e293b;         /* darker muted text */
+      --accent1: #7c3aed;
+      --accent2: #f59e0b;       /* saffron/orange */
+      --glass: rgba(0,0,0,0.04);
+      --maxwidth: 1200px;
+      --blur: 28px;
+      --radius: 14px;
+      --bg-gradient: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.02), transparent), radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.01), transparent), linear-gradient(180deg,#f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+      --header-bg: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      --border-color: rgba(0,0,0,0.1);
+      --shadow: 0 8px 30px rgba(0,0,0,0.1);
+      --modal-bg: linear-gradient(180deg, rgba(248,250,252,0.98), rgba(226,232,240,0.95));
+      --mock-bg: linear-gradient(180deg,#f8fafc 0%, #e2e8f0 100%);
+      --mock-slide-bg: rgba(0,0,0,0.3);
+      --modal-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    --mobile-bg: #f8fafc;
+    }
+
+    /* Dark mode variables */
+    [data-theme="dark"] {
+      --bg: #0f172a;             /* dark slate background */
+      --card: #1e293b;           /* dark card */
+      --muted: #cbd5e1;         /* light muted text */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --bg-gradient: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.02), transparent), radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.01), transparent), linear-gradient(180deg,#0f172a 0%, #1e293b 50%, #334155 100%);
+      --header-bg: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+      --border-color: rgba(255,255,255,0.1);
+      --shadow: 0 8px 30px rgba(0,0,0,0.3);
+      --mobile-bg: #1e293b;
+      --modal-bg: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
+    --mock-bg: linear-gradient(180deg,#1e293b 0%, #334155 100%);
+    --mock-slide-bg: rgba(0,0,0,0.7);
+      --modal-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+     /* -------------------------
+       Reset & base
+     --------------------------*/
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      overflow-x:hidden;
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-gradient);
+      color: var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color: transparent;
+      line-height:1.4;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxwidth);margin:0 auto;padding:28px}
+    /* Make media responsive by default */
+    img, video{max-width:100%;height:auto;display:block;object-fit:cover}
+
+    /* -------------------------
+      Responsive container padding
+     --------------------------*/
+     @media (max-width:800px){ .container{padding:18px} }
+     /* -------------------------
+       Header
+    --------------------------*/
+    header.site{
+      position:sticky; top:12px; z-index:60;
+      margin:0 auto; max-width:var(--maxwidth);
+      backdrop-filter: blur(6px);
+      background: var(--header-bg);
+      border-radius:12px;
+      border:1px solid var(--border-color);
+      padding:10px 18px;
+      margin-bottom:18px;
+      display:flex; align-items:center; justify-content:space-between;
+      box-shadow: var(--shadow);
+    }
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .brand .txt{line-height:1}
+    .brand .title{font-family:Poppins, Inter; font-weight:700; font-size:18px; letter-spacing:0.2px}
+
+    /* Container that locks width to prevent layout-shift */
+    .brand-anim{
+      display:inline-block; position:relative; vertical-align:middle; overflow:visible; white-space:nowrap; will-change:width;
+    }
+
+    /* Full brand text (typing target) — show inline and readable */
+    .brand-full{ display:inline-flex; align-items:center; gap:8px; font-family:Poppins, Inter; font-weight:700; font-size:18px; color:var(--muted); pointer-events:none; opacity:1; transform:none; transition:none }
+
+
+.brand-anim .brand-full{ -webkit-font-smoothing:antialiased }
+
+    /* Respect reduced motion: show full name statically */
+@media (prefers-reduced-motion: reduce){
+    .brand-anim .brand-full{ transition:none; transform:none; opacity:1 }
+  }
+
+      /* Typing cursor and reduced-motion-safe typing styles */
+      .brand-full{ display:inline-flex; align-items:center; gap:8px }
+      .typing-cursor{ width:2px; height:1.1em; background:currentColor; display:inline-block; vertical-align:middle; border-radius:1px; margin-left:4px; animation: blink 1s steps(2,start) infinite }
+      @keyframes blink{ 0%,49%{ opacity:1 } 50%,100%{ opacity:0 } }
+      @media (prefers-reduced-motion: reduce){
+        .typing-cursor{ display:none; }
+    }
+    .brand .sub{font-size:12px; color:var(--muted)}
+    /* Site logo (replaces inline SVG) */
+    .site-logo{width:48px;height:48px;object-fit:contain;display:block}
+    @media (max-width:560px){
+      .site-logo{width:40px;height:40px}
+    }
+    nav.links{display:flex;gap:18px;align-items:center}
+    nav.links a{font-weight:600;padding:8px 10px;border-radius:10px; text-decoration:none; color:var(--muted)}
+    nav.links a.cta{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#061126; box-shadow:0 6px 20px rgba(124,58,237,0.12)}
+    nav.links a.bored{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#061126; box-shadow:0 6px 20px rgba(245,158,11,0.12); cursor:pointer}
+    /* Game modal styles */
+    #boredModal{background: rgba(0,0,0,0.5);}
+    #boredModal .panel{background: var(--modal-bg); padding:24px; border-radius:12px; width:90%; max-width:400px; box-shadow: var(--modal-shadow); border:1px solid var(--border-color); color: var(--muted)}
+    #boredModal .panel, #boredModal .panel *{color: var(--muted)}
+    .game-board{display:grid; grid-template-columns:repeat(3,1fr); gap:5px; width:150px; margin:10px auto}
+    .game-cell{width:50px; height:50px; background:var(--card); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border-radius:5px}
+    .game-cell:hover{background:rgba(124,58,237,0.1)}
+    .game-cell.disabled{cursor:not-allowed; opacity:0.5}
+    @media (max-width: 560px){
+      .game-board{ width:200px; }
+      .game-cell{ width:60px; height:60px; font-size:32px; }
+      #boredModal .panel{ padding:16px; }
+    }
+    .theme-toggle{
+      background:transparent;
+      border:0;
+      padding:8px;
+      border-radius:8px;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:18px;
+      transition:color .18s ease;
+    }
+    .theme-toggle:hover{color:#7c3aed}
+    .hamb{
+      display:none;
+      background:transparent;
+      border:0;
+      padding:8px;
+      border-radius:8px;
+      color:var(--muted);
+      cursor:pointer;
+    }
+
+     /* -------------------------
+       Hero (fluid & responsive)
+     --------------------------*/
+     .hero{display:grid;grid-template-columns:1fr minmax(260px,480px);gap:clamp(16px,2.8vw,36px);align-items:center;padding:clamp(28px,6vw,64px) 0}
+     .hero-left h1{font-family:Poppins; font-weight:700; font-size:clamp(26px,4vw,44px); margin:0 0 12px; line-height:1.05}
+     .hero-left p.lead{color:var(--muted); margin:0 0 18px; font-size:clamp(14px,1.6vw,16px)}
+    .cta-row{display:flex;gap:12px;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#061126; border:0; cursor:pointer;
+      transform: translateZ(0); /* for crispness */
+    }
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06); color:var(--muted); font-weight:600}
+    .stats{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .stat{background:var(--glass); padding:10px 12px;border-radius:10px; font-weight:700; color:var(--muted); min-width:120px; text-align:center}
+    /* right mock */
+    .mock-wrap{position:relative; height:clamp(220px,36vw,420px); border-radius:20px; overflow:visible; display:flex; align-items:center; justify-content:center}
+    .floating-effect{position:absolute; inset: -24% -12% auto auto; width:480px; height:480px; filter: blur(var(--blur)); opacity:0.22; background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.95), transparent 20%), radial-gradient(circle at 80% 80%, rgba(245,158,11,0.95), transparent 20%); mix-blend-mode:screen; border-radius:50%}
+
+    /* mock monitor - more polished with bezel, subtle tilt and glow */
+      .mock-device{position:relative; width:88%; max-width:520px; height:76%; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; align-items:center; transform: perspective(800px) rotateX(2deg);}
+    .mock-device::before{content:''; position:absolute; width:92%; height:86%; top:42px; border-radius:18px; box-shadow: 0 24px 60px rgba(0,0,0,0.1); transform: translateY(-6px); z-index: -1}
+
+    /* Mock slides dark background */
+    .mock-slide{ /* background: var(--mock-slide-bg); */ }
+
+    /* desktop screen inside the mock device - glossy panel */
+    .mock-screen{width:94%; height:70%; background:var(--mock-bg); border-radius:12px; border:8px solid rgba(0,0,0,0.2); box-shadow: 0 18px 40px rgba(0,0,0,0.1), inset 0 2px 18px rgba(0,0,0,0.02); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden}
+    .mock-screen:after{content:''; position:absolute; left:50%; transform:translateX(-50%); bottom:-18px; width:120px; height:16px; background:linear-gradient(180deg,#061226,#04101a); border-radius:8px}
+    .mock-screen:before{content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00)); pointer-events:none}
+
+    /* animated slides inside mock screen */
+    .mock-slide{flex:1; width:100%; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-weight:800; font-size:18px; position:relative; overflow:hidden; padding:12px; text-align:center; transition:opacity .32s ease, transform .32s ease}
+    .mock-slide::before{content:''; position:absolute; inset:0; pointer-events:none; /* background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); */ mix-blend-mode:overlay}
+    .mock-slide.fade-out{opacity:0; transform:translateY(6px)}
+    .mock-slide.fade-in{opacity:1; transform:translateY(0)}
+
+    /* controls */
+    .mock-controls{display:flex; gap:8px; align-items:center; justify-content:center}
+    .mock-controls .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.06); transition:all .28s ease}
+    .mock-controls .dot.active{background:#ffffff; width:22px; height:8px; border-radius:6px}
+
+    /* -------------------------
+       Sections
+    --------------------------*/
+    section.block{padding:44px 0}
+    h2.section-title{font-size:22px;margin:0 0 12px}
+    p.section-sub{color:var(--muted); margin:0 0 18px}
+
+    /* Services grid */
+      .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+    .service-card{background:var(--card); border-radius:12px; padding:18px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s; border:1px solid rgba(0,0,0,0.05)}
+    .service-card:hover{transform: translateY(-10px); box-shadow: 0 30px 70px rgba(0,0,0,0.15)}
+    .svc-title{font-weight:700;margin-bottom:6px}
+    .svc-desc{color:var(--muted); font-size:14px}
+
+    /* Portfolio grid */
+      .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px}
+    .proj{position:relative; border-radius:12px; overflow:hidden; min-height:180px; aspect-ratio:4/3; background:linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.00)); cursor:pointer; border:1px solid rgba(0,0,0,0.05); z-index:0}
+    .proj img{width:100%; height:100%; object-fit:cover; display:block}
+    /* Overlay: stronger contrast, above the image, with opacity transition */
+    .proj .overlay{position:absolute; inset:0; display:flex; align-items:flex-end; padding:16px; background: linear-gradient(180deg, rgba(248,250,252,0.0), rgba(0,0,0,0.7)); color:var(--muted); transition: transform .26s, opacity .26s; transform: translateY(20px); opacity:0; z-index:2}
+    .proj .overlay *{color:var(--muted)}
+    .proj .overlay div > div[style]{/* leave inline styles but ensure readable */ color:inherit}
+    .proj .overlay .overlay-desc{color:rgba(0,0,0,0.8)}
+    .proj:hover .overlay{transform: translateY(0); opacity:1}
+
+    /* founders */
+    .founder-wrap{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+    .founder-entry{display:flex;gap:16px;align-items:flex-start;min-width:320px;max-width:560px}
+    .founder-photo{width:120px;height:120px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,0.06);box-shadow:0 10px 24px rgba(2,6,23,0.6)}
+    @media (max-width: 760px){
+      .founder-entry{min-width:100%;max-width:100%;gap:12px}
+      .founder-photo{width:96px;height:96px}
+    }
+    .founder-bio{background:var(--card); padding:16px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1)}
+    .avatar{width:96px;height:96px;border-radius:50%; overflow:hidden; border:3px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:22px; background:linear-gradient(90deg,var(--accent1),var(--accent2));}
+
+    /* contact */
+    .contact-grid{display:grid; grid-template-columns:1fr; gap:18px}
+    .contact-card{background:var(--card); padding:18px; border-radius:12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1)}
+    form.contact-form{display:flex; flex-direction:column; gap:10px}
+    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:10px; border-radius:8px; color: var(--muted)}
+    /* Make selects explicitly dark and readable on focus/selection */
+    select{
+      background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.125));
+      border:1px solid rgba(255,255,255,0.4);
+      padding:10px; border-radius:8px; color:var(--muted); /* light text for better visibility in dark mode */
+      -webkit-appearance: none; -moz-appearance: none; appearance: none;
+      background-repeat: no-repeat; background-position: right 10px center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    select::placeholder {
+      color: #94a3b8; /* lighter placeholder color for better visibility in dark mode */
+      opacity: 1; /* make sure it is visible in all browsers */
+    }
+    select:focus, select:active{
+      outline: none;
+      border-color: var(--muted);
+      border-width: 1px;
+      box-shadow: none;
+      color: var(--muted); /* light color on focus/selection */
+    }
+    /* Try to style native options where supported so dropdown items are readable */
+    select option{ background-color: #f8fafc; color: #1e293b }
+    .small{font-size:13px; color:var(--muted); /* light text for better visibility in dark mode */}
+    .pay-qr{width:120px;height:120px;background:linear-gradient(90deg,var(--accent1),var(--accent2)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; color:#081126}
+
+    /* footer */
+    footer.site-foot{padding:28px 0; text-align:center; color:var(--muted)}
+
+    /* -------------------------
+       Animations & utility
+    --------------------------*/
+    .reveal{opacity:0; transform: translateY(14px); transition: all .6s cubic-bezier(.15,.9,.3,1); will-change:transform,opacity}
+    .reveal.show{opacity:1; transform: translateY(0)}
+    .glow-pulse{animation: pulse 3.8s infinite}
+    @keyframes pulse { 0%{filter: drop-shadow(0 0 0 rgba(124,58,237,0.18))} 50%{filter: drop-shadow(0 0 36px rgba(124,58,237,0.12))} 100%{filter: drop-shadow(0 0 0 rgba(124,58,237,0.18))} }
+
+    /* modal */
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:120}
+    .modal.show{display:flex}
+    /* Project modal: stronger overlay and opaque panel for legibility */
+    #projModal{background: rgba(0,0,0,0.5);}
+    #projModal .panel{background: var(--modal-bg); padding:24px; border-radius:12px; width:90%; max-width:900px; box-shadow: var(--modal-shadow); border:1px solid var(--border-color); color: var(--muted)}
+    #projModal .panel, #projModal .panel *{color: var(--muted)}
+    /* Mobile menu overrides: keep transitions and overlay click-to-close */
+    #mobileMenu{display:flex; opacity:0; pointer-events:none; transition:opacity .28s ease; backdrop-filter: blur(6px);}
+    #mobileMenu .panel{max-width:320px; width:92%; transform:translateX(18px); opacity:0; transition:transform .28s ease, opacity .28s ease; border-radius:12px}
+    #mobileMenu.show{opacity:1; pointer-events:auto}
+    #mobileMenu.show .panel{transform:translateX(0); opacity:1}
+    #mobileMenu .mobile-link{display:block; padding:10px 0; color:var(--muted); text-decoration:none; font-weight:700; transition:color .18s ease, transform .18s ease}
+    #mobileMenu .mobile-link:hover{color:var(--muted); transform:translateX(6px)}
+    #mobileMenu .mobile-close{position:absolute; right:12px; top:12px; border:0; background:transparent; color:var(--muted); font-size:18px; cursor:pointer}
+    /* Responsive */
+    @media (max-width: 1000px){
+      .hero{grid-template-columns:1fr; gap:18px}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+      nav.links{display:none}
+      .hamb{display:block}
+    }
+    @media (max-width: 560px){
+      .services-grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .brand .title{font-size:16px}
+      .mock-wrap{height:260px}
+      .mock-device{height:220px}
+    }
+    /* Background canvas sits behind content */
+    #bgCanvas{position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; display:block}
+    /* Ensure main container content sits above the canvas */
+    .container, header.site, footer.site-foot, .mock-wrap{position:relative; z-index:1}
+  </style>
+</head>
+<body>
+  <!-- Background animation canvas (floating expertise icons) -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- ============================
+       Header
+  ============================= -->
+  <header class="site container" role="banner">
+    <a class="brand" href="index.html" aria-label="FourForge Digital home">
+      <img src="FourForage.jpg" alt="FourForge Digital" class="site-logo" loading="eager" decoding="async" />
+      <div class="txt">
+        <div class="title">
+          <span class="brand-anim" id="brandAnim" aria-live="polite">
+          <span class="brand-full" id="brandFull" aria-hidden="true" data-text="FourForge Digital">
+            <span id="brandText" aria-hidden="true"></span>
+            <span class="typing-cursor" aria-hidden="true"></span>
+          </span>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <nav class="links" role="navigation" aria-label="Main navigation">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#portfolio">Portfolio</a>
+       <a href="index.html#tools">Tools</a>
+      <a href="about.html">About us</a>
+      <a href="index.html#" onclick="openBoredModal()">Bored?</a>
+      <a href="index.html#contact" class="cta">Get Quote</a>
+      <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle" onclick="toggleTheme()">🌙</button>
+    </nav>
+
+    <button class="hamb" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('show')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </header>
+
+  <div id="mobileMenu" class="modal" style="background:transparent;" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" style="position:relative; max-height:90vh; overflow-y:auto; background: var(--mobile-bg);">
+      <button class="mobile-close" aria-label="Close menu" onclick="mobileClose()">✕</button>
+      <nav style="display:flex;flex-direction:column;gap:6px;padding:10px 6px 10px 50px">
+        <a class="mobile-link" href="index.html" onclick="mobileClose()">Home</a>
+        <a class="mobile-link" href="index.html#services" onclick="mobileClose()">Services</a>
+        <a class="mobile-link" href="index.html#portfolio" onclick="mobileClose()">Portfolio</a>
+        <a class="mobile-link" href="index.html#tools" onclick="mobileClose()">Tools</a>
+        <a class="mobile-link" href="about.html" onclick="mobileClose()">About us</a>
+        <a class="mobile-link" href="index.html#" onclick="mobileClose(); openBoredModal()">Bored?</a>
+        <a class="mobile-link" href="index.html#contact" onclick="mobileClose()">Contact</a>
+        <button class="theme-toggle" onclick="toggleTheme(); mobileClose()" aria-label="Toggle theme" style="position:absolute; left:12px; top:12px; display:block; padding:10px 0; font-weight:700;">🌙</button>
+        <div style="margin-top:12px">
+          <button class="btn" onclick="mobileClose(); window.location='index.html#contact'">Get Quote</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ============================
+       Hero
+  ============================= -->
+  <main id="home" class="container">
+    <section class="hero reveal">
+      <div class="hero-left">
+        <h1>About FourForge Digital</h1>
+        <p class="lead">Four Minds. One Creative Vision. Elevating Brands in the Digital World.</p>
+
+        <p>In 2025, four young and driven professionals — Lakshya Acharya, Swapnil Vyas, Tanmay Acharya, and Keshav Tiwari — shared a dream. A dream to empower businesses and individuals in the digital era. A dream to make brands shine, stand out, and build a memorable identity. This vision gave birth to Four Forge Digital.</p>
+
+        <p>Our name itself tells our story. “Four” represents the strength, energy, and expertise of our four founders. “Forge” represents our mission — to craft, strengthen, and elevate every brand’s digital journey with creativity, strategy, and powerful execution.</p>
+
+        <p>We are not just “working” on projects… We blend creativity, technology, and strategy to deliver a digital experience that is unique for every brand.</p>
+
+        <h3>Our Approach & Philosophy</h3>
+        <p>Four Forge Digital isn’t just an agency — it’s a vision. Every project is built through the perfect mix of creativity, technology, strategy, and teamwork.</p>
+        <p>We don’t just showcase brands… We make them memorable, impactful, and digitally powerful.</p>
+        <p>We believe every business deserves a strong digital identity. That’s why we create customized digital solutions for every client — whether it’s social media management, website development, reels production, or graphic design. Every service focuses on the brand’s growth and long-term identity.</p>
+
+        <h3>Our Mission</h3>
+        <p>To give every brand a unique, strong, and impactful identity in the digital world. Not just completing the work — but helping every client tell their story to the world through their digital platforms.</p>
+
+        <h3>Our Vision</h3>
+        <p>To enable businesses and individuals to shine at their full potential in the digital era. From 2025 to 2026 and beyond, Four Forge Digital aims to be a trusted partner in every brand’s digital transformation and growth.</p>
+      </div>
+
+      <div class="hero-right">
+        <div class="mock-wrap">
+          <div class="floating-effect glow-pulse" aria-hidden="true"></div>
+          <div class="mock-device">
+            <div class="mock-screen" aria-hidden="false">
+              <div id="mockSlides" class="mock-slide">Meet the Team • Innovation • Excellence</div>
+            </div>
+            <div class="mock-controls" style="margin-top:12px">
+              <div class="dot active"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         Founders
+    ============================= -->
+    <section id="founders" class="block reveal">
+      <h2 class="section-title">Meet Our Founders</h2>
+      <p class="section-sub">The creative minds behind FourForge Digital.</p>
+
+      <div class="founder-wrap" style="margin-top:18px">
+        <div class="founder-entry">
+          <img src="lakshya.jpg" alt="Lakshya Acharya" class="founder-photo" loading="lazy" decoding="async">
+          <div class="founder-bio">
+            <div style="font-weight:700;margin-bottom:6px">Lakshya Acharya</div>
+            <div style="font-size:14px;color:var(--muted);font-weight:700">Technical Director</div>
+            <div style="font-size:13px;margin-top:8px;color:var(--muted)">Lakshya Acharya is the Technical Director at FourForge Digital, bringing a wealth of experience in software development and digital innovation. With a background in computer science, Lakshya has been at the forefront of technological advancements since his early days in college. He specializes in backend development, where he excels in building scalable and secure systems using languages like Python, Node.js, and frameworks such as Django and Express. His expertise extends to API integrations, ensuring seamless communication between various platforms and services. Lakshya is passionate about leveraging cutting-edge technologies like cloud computing (AWS, Azure), microservices architecture, and DevOps practices to deliver high-performance solutions. At FourForge Digital, he leads the technical team, mentoring junior developers and fostering a culture of continuous learning and innovation. Lakshya believes in the power of technology to transform businesses, and he works tirelessly to implement best practices that enhance user experiences and drive digital growth. His contributions have been instrumental in developing robust e-commerce platforms, custom web applications, and data-driven solutions for clients across various industries. Beyond his technical skills, Lakshya is a strategic thinker who collaborates closely with the creative and marketing teams to align technical capabilities with business objectives. He holds certifications in cloud architecture and software engineering, and he regularly contributes to open-source projects. Lakshya's vision for FourForge Digital is to become a leader in digital transformation, empowering businesses to thrive in the digital age through innovative and reliable technology solutions.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry">
+          <img src="swapnil.jpg" alt="Swapnil Vyas" class="founder-photo" loading="lazy" decoding="async">
+          <div class="founder-bio">
+            <div style="font-weight:700;margin-bottom:6px">Swapnil Vyas</div>
+            <div style="font-size:14px;color:var(--muted);font-weight:700">Digital Marketing & Content Strategy Expert</div>
+            <div style="font-size:13px;margin-top:8px;color:var(--muted)">Swapnil Vyas serves as the Digital Marketing & Content Strategy Expert at FourForge Digital, where he drives the company's marketing initiatives and content creation efforts. With a strong foundation in marketing and communications, Swapnil has honed his skills in digital strategies that amplify brand presence and engagement. He specializes in social media management, crafting compelling campaigns on platforms like Instagram, Facebook, LinkedIn, and TikTok to reach target audiences effectively. Swapnil's expertise includes content strategy, where he develops comprehensive plans that align with brand goals and resonate with consumers. He is adept at data analysis, using tools like Google Analytics, SEMrush, and social media insights to measure campaign performance and optimize strategies for maximum ROI. At FourForge Digital, Swapnil leads the marketing team, overseeing the creation of high-quality content such as blog posts, videos, graphics, and reels that tell compelling brand stories. His approach combines creativity with analytics, ensuring that every piece of content not only engages but also converts. Swapnil has successfully managed campaigns for diverse clients, from startups to established businesses, resulting in increased brand visibility, website traffic, and customer acquisition. He is passionate about staying ahead of digital marketing trends, including influencer collaborations, SEO optimization, and emerging platforms. Swapnil believes in the importance of authentic storytelling and building long-term relationships with audiences. He mentors the team on best practices in digital marketing and frequently conducts workshops on content creation and strategy. His vision is to position FourForge Digital as a thought leader in digital marketing, helping brands navigate the ever-evolving digital landscape with innovative and effective strategies.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry">
+          <img src="tanmay.jpg" alt="Tanmay Acharya" class="founder-photo" loading="lazy" decoding="async">
+          <div class="founder-bio">
+            <div style="font-weight:700;margin-bottom:6px">Tanmay Acharya</div>
+            <div style="font-size:14px;color:var(--muted);font-weight:700">Creative Director (Visual Media & Branding)</div>
+            <div style="font-size:13px;margin-top:8px;color:var(--muted)">Tanmay Acharya is the Creative Director at FourForge Digital, specializing in Visual Media & Branding. With a keen eye for design and a passion for storytelling through visuals, Tanmay has established himself as a key figure in the creative realm. His background in graphic design and fine arts has equipped him with the skills to create stunning visual identities that capture the essence of brands. Tanmay excels in logo design, brand guidelines, packaging, and user interface design, using tools like Adobe Creative Suite, Figma, and Sketch to bring ideas to life. He leads the creative team in developing cohesive brand experiences that span across digital and print media. At FourForge Digital, Tanmay oversees the production of visual content, including social media graphics, website designs, video thumbnails, and promotional materials. His work focuses on creating memorable and impactful visuals that evoke emotions and drive engagement. Tanmay has collaborated on branding projects for various industries, from food and beverage to healthcare and technology, helping businesses establish strong visual identities that stand out in competitive markets. He is committed to innovation in design, incorporating trends like minimalism, bold colors, and interactive elements. Tanmay believes in the power of design to communicate messages effectively and build brand loyalty. He mentors junior designers, fostering a creative environment where ideas flourish. His contributions have been pivotal in elevating the visual standards of FourForge Digital's projects, resulting in award-winning designs and satisfied clients. Tanmay's vision is to make FourForge Digital synonymous with exceptional visual storytelling, where every design element serves a purpose and enhances the overall brand narrative.</div>
+          </div>
+        </div>
+
+        <div class="founder-entry">
+          <img src="keshav.jpg" alt="Keshav Tiwari" class="founder-photo" loading="lazy" decoding="async">
+          <div class="founder-bio">
+            <div style="font-weight:700;margin-bottom:6px">Keshav Tiwari</div>
+            <div style="font-size:14px;color:var(--muted);font-weight:700">Frontend Developer and UI Specialist</div>
+            <div style="font-size:13px;margin-top:8px;color:var(--muted)">Keshav Tiwari is the Frontend Developer and UI Specialist at FourForge Digital, dedicated to crafting intuitive and visually appealing user interfaces. With a strong foundation in web technologies, Keshav specializes in creating responsive and interactive front-end experiences using HTML, CSS, JavaScript, and frameworks like React and Vue.js. He excels in translating design mockups into pixel-perfect code, ensuring seamless user experiences across devices and browsers. At FourForge Digital, Keshav leads the development of user interfaces for websites and web applications, collaborating closely with designers and backend developers to deliver cohesive digital products. His expertise includes optimizing performance, implementing accessibility standards, and integrating modern UI libraries and tools. Keshav is passionate about staying updated with the latest trends in frontend development, such as progressive web apps and component-based architectures. He has contributed to numerous projects, from e-commerce platforms to interactive dashboards, resulting in enhanced user engagement and satisfaction. Keshav believes in the power of clean, maintainable code and user-centered design to drive business success. He mentors junior developers, fostering a culture of innovation and best practices. His vision is to make FourForge Digital a leader in frontend excellence, where every interface not only looks great but also provides an exceptional user experience.</div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <!-- ============================
+         Contact
+    ============================= -->
+    <section id="contact" class="block reveal">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-sub">Ready to start your digital journey? Let's talk.</p>
+
+      <div class="contact-grid" style="margin-top:16px">
+        <form class="contact-card contact-form" id="contactForm" onsubmit="submitForm(event)">
+          <label class="small">Name</label>
+          <input id="name" required placeholder="Your name" />
+
+          <label class="small">Business</label>
+          <input id="business" placeholder="Business name" />
+
+          <label class="small">Service</label>
+          <select id="service">
+            <option>Website / App</option>
+            <option>UI/UX & Branding</option>
+            <option>Video Production</option>
+            <option>Data Analysis</option>
+            <option>Content & Social</option>
+          </select>
+
+          <label class="small">Budget (optional)</label>
+          <input id="budget" placeholder="₹" />
+
+          <label class="small">Message</label>
+          <textarea id="message" rows="4" placeholder="Project brief..."></textarea>
+
+          <div style="display:flex;gap:8px;margin-top:8px">
+          <button type="submit" class="btn">Send inquiry</button>
+            <button type="button" class="btn secondary" onclick="openWhatsApp()">Send on WhatsApp</button>
+          </div>
+
+          <div id="formMsg" class="small" style="margin-top:8px;color:var(--muted);display:none"></div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <div style="text-align:center;">
+        <div>© FourForge Digital</div>
+        <div class="small" style="margin-top:6px;color:var(--muted)">Designed &amp; Crafted by Lakshya Acharya (Technical Director)</div>
+        <div style="margin-top:12px; display:flex; justify-content:center; gap:16px; font-size:16px;">
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="color: var(--muted); text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.733 0-1.325.59-1.325 1.322v21.356c0 .732.592 1.322 1.325 1.322h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.313h3.59l-.467 3.622h-3.123v9.294h6.116c.733 0 1.325-.59 1.325-1.322v-21.355c0-.733-.592-1.322-1.325-1.322z"/></svg>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter" style="color: var(--muted); text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.86 9.86 0 0 1-3.127 1.195 4.917 4.917 0 0 0-8.364 4.482 13.945 13.945 0 0 1-10.125-5.144 4.917 4.917 0 0 0 1.523 6.574 4.902 4.902 0 0 1-2.228-.616c-.054 2.28 1.581 4.415 3.949 4.89a4.935 4.935 0 0 1-2.224.084 4.919 4.919 0 0 0 4.588 3.417A9.867 9.867 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.212c9.054 0 14-7.496 14-13.986 0-.21 0-.423-.015-.633A9.936 9.936 0 0 0 24 4.557z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/fourforge-digital/?viewAsMember=true" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: var(--muted); text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452H17.07v-5.569c0-1.327-.027-3.036-1.85-3.036-1.85 0-2.134 1.445-2.134 2.936v5.669H9.599V9h3.202v1.561h.046c.446-.843 1.536-1.732 3.161-1.732 3.385 0 4.01 2.228 4.01 5.127v6.496zM5.337 7.433a1.85 1.85 0 1 1 0-3.701 1.85 1.85 0 0 1 0 3.701zm1.728 13.019H3.608V9h3.457v11.452zM22.225 0H1.771C.792 0 0 .792 0 1.771v20.451C0 23.207.792 24 1.771 24h20.451c.98 0 1.774-.793 1.774-1.778V1.77c0-.98-.793-1.77-1.775-1.77z"/></svg>
+          </a>
+          <a href="https://instagram.com/fourforgedigital?igsh=MTRhaDFsdnEwNWJIZg==" target="_blank" rel="noopener" aria-label="Instagram" style="color: var(--muted); text-decoration:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5a4.25 4.25 0 0 0-4.25 4.25v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5zm8.5 2.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 0 0 0 7 3.5 3.5 0 0 0 0-7z"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // Animate counts from 0 to target number on page load
+    function animateCount(el, target, suffix = '', duration = 2000) {
+      let start = null;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const current = Math.min(Math.floor((progress / duration) * target), target);
+        el.textContent = current + suffix;
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = target + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const projectsEl = document.getElementById('projectsCount');
+      const clientsEl = document.getElementById('clientsCount');
+      if (projectsEl) {
+        animateCount(projectsEl, 20, '+ Projects');
+      }
+      if (clientsEl) {
+        animateCount(clientsEl, 50, '+ Happy Clients');
+      }
+    });
+
+    // Background canvas animation: floating icons representing our expertise
+    (function(){
+      const canvas = document.getElementById('bgCanvas');
+      if(!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let W = 0, H = 0, DPR = Math.max(1, window.devicePixelRatio || 1);
+
+      function resize(){
+        W = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        H = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        canvas.width = Math.floor(W * DPR);
+        canvas.height = Math.floor(H * DPR);
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+      }
+
+      // Check prefers-reduced-motion
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduced){
+        // Draw a subtle static gradient background and exit
+        resize();
+        const g = ctx.createLinearGradient(0,0, W, H);
+        g.addColorStop(0, 'rgba(124,58,237,0.06)');
+        g.addColorStop(1, 'rgba(245,158,11,0.03)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0,0,W,H);
+        return;
+      }
+
+      // Types of icon markers: camera logo balloon, graph balloon, simple balloon
+      // Updated ICONS to only those three types as requested, removing 'coding' (square) and 'marketing' (megaphone)
+      const ICONS = ['reels','data'];
+
+      function rand(min, max){ return Math.random() * (max - min) + min }
+
+      // Particle structure
+      const particles = [];
+      const COUNT = Math.floor((window.innerWidth * window.innerHeight) / 90000) + 10; // scale count with viewport
+
+      function makeParticle(){
+        const size = rand(18, 42);
+        return {
+          x: rand(0, W),
+          y: rand(H, H + 200),
+          vx: rand(-0.15, 0.15),
+          vy: -rand(0.2, 0.9),
+          size,
+          alpha: rand(0.18, 0.9),
+          type: ICONS[Math.floor(rand(0, ICONS.length))],
+          spin: rand(-0.002, 0.002),
+          rot: rand(0, Math.PI*2)
+        };
+      }
+
+      for(let i=0;i<COUNT;i++) particles.push(makeParticle());
+
+      function drawIcon(p){
+        const s = p.size;
+        ctx.save();
+        ctx.globalAlpha = p.alpha * 0.95;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+
+        // subtle backdrop circle
+        ctx.beginPath(); ctx.arc(0,0, s*0.6, 0, Math.PI*2); ctx.fillStyle = 'rgba(248,250,252,0.5)'; ctx.fill();
+        // gradient accent
+        const g = ctx.createLinearGradient(-s, -s, s, s);
+        g.addColorStop(0, '#7c3aed'); g.addColorStop(1, '#f59e0b');
+
+        ctx.lineWidth = Math.max(1, s*0.06);
+        ctx.strokeStyle = g;
+        ctx.fillStyle = g;
+
+        // draw a small symbol per type
+        switch(p.type){
+          case 'reels':
+            // camera body + record dot (represents reels/shoot)
+            ctx.beginPath(); ctx.roundRect(-s*0.36, -s*0.22, s*0.72, s*0.44, s*0.08); ctx.fill();
+            ctx.beginPath(); ctx.arc(-s*0.02, 0, s*0.22, 0, Math.PI*2); ctx.fillStyle='rgba(248,250,252,0.3)'; ctx.fill();
+            ctx.beginPath(); ctx.arc(-s*0.02, 0, s*0.14, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+            // small red record dot
+            ctx.beginPath(); ctx.arc(s*0.32, -s*0.14, s*0.06, 0, Math.PI*2); ctx.fillStyle = '#ff4d4d'; ctx.fill();
+            break;
+          case 'data':
+            // line chart with points
+            ctx.beginPath(); ctx.moveTo(-s*0.38, s*0.22); ctx.lineTo(-s*0.12, s*0.02); ctx.lineTo(s*0.05, s*0.12); ctx.lineTo(s*0.32, -s*0.12); ctx.stroke();
+            // points
+            ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.beginPath(); ctx.arc(-s*0.12, s*0.02, s*0.05,0,Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(s*0.05, s*0.12, s*0.05,0,Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(s*0.32, -s*0.12, s*0.05,0,Math.PI*2); ctx.fill();
+            break;
+        }
+
+        ctx.restore();
+      }
+
+      let last = performance.now();
+      function frame(t){
+        const dt = Math.min(50, t - last); last = t;
+        ctx.clearRect(0,0,W,H);
+
+        // faint background glows
+        const bgG = ctx.createLinearGradient(0,0,W,H);
+        bgG.addColorStop(0, 'rgba(124,58,237,0.01)'); bgG.addColorStop(1, 'rgba(245,158,11,0.005)');
+        ctx.fillStyle = bgG; ctx.fillRect(0,0,W,H);
+
+        for(let p of particles){
+          p.x += p.vx * (dt/16);
+          p.y += p.vy * (dt/16);
+          p.rot += p.spin * (dt/16);
+          // horizontal wrap
+          if(p.x < -80) p.x = W + 80;
+          if(p.x > W + 80) p.x = -80;
+          // if moved past top, recycle at bottom
+          if(p.y < -80){
+            Object.assign(p, makeParticle());
+            p.y = H + rand(10, 160);
+          }
+          drawIcon(p);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      requestAnimationFrame(frame);
+    })();
+    // Typing animation for the brand text (continuous loop).
+    (function(){
+      const brandFull = document.getElementById('brandFull');
+      const brandTextEl = document.getElementById('brandText');
+      if(!brandFull || !brandTextEl) return;
+
+      // Indicate we're using typing mode so other brand animations can stop
+      window._brandMode = 'typing';
+
+      // Respect reduced motion
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const fullText = brandFull.getAttribute('data-text') || 'FourForge Digital';
+      if(prefersReduced){
+        // show full text and don't animate
+        brandTextEl.textContent = fullText;
+        window._brandMode = 'default';
+        return;
+      }
+
+      let idx = 0;
+      const typingSpeed = 80; // ms per char
+      const initialDelay = 350; // start delay
+      const pauseAfterFull = 5000; // ms pause after full text before restarting (30s hold)
+
+      function typeNext(){
+        if(idx <= fullText.length){
+          brandTextEl.textContent = fullText.slice(0, idx);
+          idx++;
+          setTimeout(typeNext, typingSpeed);
+        } else {
+          // pause before restarting
+          setTimeout(() => {
+            idx = 0;
+            typeNext();
+          }, pauseAfterFull);
+        }
+      }
+      setTimeout(typeNext, initialDelay);
+    })();
+
+  /* ============================
+     Scripts (animations, UI)
+  ============================ */
+  // tiny helper: show reveals by intersection observer
+  (function(){
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting) { e.target.classList.add('show'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  })();
+
+  // Mock slide video display
+  (function(){
+    const slides = [
+      '<video src="promo.mp4" autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;"></video>'
+    ];
+    const el = document.getElementById('mockSlides');
+    // init
+    if(el) el.innerHTML = slides[0];
+  })();
+
+  // portfolio modal content (example)
+  const projects = {
+    1: {title:'Cafe Website', body:'One-page website with menu, booking widget and mobile-first UI. Result: +23% bookings in first month.'},
+    2: {title:'Sweets Brand Identity', body:'Full pack: logo, packaging, social kit. Result: 8 retail stores adopted the packaging.'},
+    3: {title:'Promo Film', body:'60s product promo + vertical reels. Optimized cut for FB/IG/TikTok.'},
+    4: {title:'Clinic Site', body:'Multi-page site with service pages, contact forms and SEO basics.'},
+    5: {title:'Retail Packaging', body:'Shelf-ready packaging design and dielines.'},
+  6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
+  };
+  let playerName = '';
+  let playerSymbol = 'X';
+  // Active modal reference for focus trapping
+  let activeModal = null;
+
+  function activateModal(modal){
+    if(!modal) return;
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    activeModal = modal;
+    // focus the first focusable element in the modal
+    const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    if(focusable.length) focusable[0].focus();
+  }
+  function deactivateModal(modal){
+    if(!modal) return;
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    if(activeModal === modal) activeModal = null;
+  }
+
+  function openProject(id){
+    const modal = document.getElementById('projModal');
+    document.getElementById('projTitle').textContent = projects[id].title;
+    document.getElementById('projBody').textContent = projects[id].body;
+    activateModal(modal);
+  }
+  function closeProject(){ deactivateModal(document.getElementById('projModal')); }
+
+  function openBoredModal(){
+    const modal = document.getElementById('boredModal');
+    activateModal(modal);
+    resetToSetup();
+  }
+  function closeBoredModal(){ deactivateModal(document.getElementById('boredModal')); }
+
+  function startGame() {
+    playerName = document.getElementById('playerName').value.trim() || 'Player';
+    playerSymbol = document.querySelector('input[name="playerSymbol"]:checked').value;
+    document.getElementById('gameSetup').style.display = 'none';
+    document.getElementById('gamePlay').style.display = 'block';
+    resetGame();
+  }
+
+  let currentPlayer = 'X';
+  let gameState = ['', '', '', '', '', '', '', '', ''];
+  let gameActive = true;
+  const winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  function handleCellClick(event) {
+    const clickedCell = event.target;
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+    if (gameState[clickedCellIndex] !== '' || !gameActive || clickedCell.classList.contains('disabled')) {
+      return;
+    }
+    gameState[clickedCellIndex] = currentPlayer;
+    clickedCell.textContent = currentPlayer;
+    checkResult();
+  }
+
+  function makeAIMove() {
+    const emptyCells = [];
+    gameState.forEach((cell, index) => {
+      if (cell === '') emptyCells.push(index);
+    });
+    if (emptyCells.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const aiCellIndex = emptyCells[randomIndex];
+    gameState[aiCellIndex] = currentPlayer;
+    document.querySelector(`.game-cell[data-index="${aiCellIndex}"]`).textContent = currentPlayer;
+    checkResult();
+  }
+
+  function checkResult() {
+    let roundWon = false;
+    for (let i = 0; i < winningConditions.length; i++) {
+      const winCondition = winningConditions[i];
+      let a = gameState[winCondition[0]];
+      let b = gameState[winCondition[1]];
+      let c = gameState[winCondition[2]];
+      if (a === '' || b === '' || c === '') {
+        continue;
+      }
+      if (a === b && b === c) {
+        roundWon = true;
+        break;
+      }
+    }
+    if (roundWon) {
+      const winner = currentPlayer === playerSymbol ? playerName : 'Computer';
+      document.getElementById('gameStatus').textContent = `${winner} wins!`;
+      gameActive = false;
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+      return;
+    }
+    let roundDraw = !gameState.includes('');
+    if (roundDraw) {
+      document.getElementById('gameStatus').textContent = 'Draw!';
+      gameActive = false;
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+      return;
+    }
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    const turnPlayer = currentPlayer === playerSymbol ? playerName : 'Computer';
+    document.getElementById('gameStatus').textContent = `It's ${turnPlayer}'s turn`;
+    if (currentPlayer !== playerSymbol) {
+      // AI's turn
+      setTimeout(() => {
+        document.querySelectorAll('.game-cell').forEach(cell => cell.classList.add('disabled'));
+        makeAIMove();
+      }, 500);
+    } else {
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+    }
+  }
+
+  function resetGame() {
+    currentPlayer = playerSymbol || 'X';
+    gameState = ['', '', '', '', '', '', '', '', ''];
+    gameActive = true;
+    const playerTurn = currentPlayer === playerSymbol ? (playerName || 'Player') : 'Computer';
+    document.getElementById('gameStatus').textContent = `It's ${playerTurn}'s turn`;
+    document.querySelectorAll('.game-cell').forEach(cell => {
+      cell.textContent = '';
+      cell.classList.remove('disabled');
+    });
+  }
+
+  function resetToSetup() {
+    document.getElementById('gameSetup').style.display = 'block';
+    document.getElementById('gamePlay').style.display = 'none';
+    document.getElementById('playerName').value = '';
+    playerName = '';
+    playerSymbol = 'X';
+    document.querySelector('input[name="playerSymbol"][value="X"]').checked = true;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.game-cell').forEach(cell => {
+      cell.addEventListener('click', handleCellClick);
+    });
+    document.getElementById('gameStatus').textContent = `It's ${currentPlayer}'s turn`;
+  });
+
+  // filter portfolio
+  function filterPortfolio(t){
+    document.querySelectorAll('#portfolioGrid .proj').forEach(p=>{
+      if(t==='all') p.style.display='';
+      else p.style.display = (p.dataset.type===t)? '' : 'none';
+    });
+  }
+
+  // mobile menu helper
+  function mobileClose(){
+    const m = document.getElementById('mobileMenu');
+    m.classList.remove('show');
+    m.setAttribute('aria-hidden','true');
+  }
+
+  // allow closing mobile menu by clicking on the overlay area
+  (function(){
+    const mm = document.getElementById('mobileMenu');
+    if(mm){
+      mm.addEventListener('click', function(e){
+        if(e.target === mm) mobileClose();
+      });
+    }
+  })();
+
+  // Simple focus-trap: keep Tab cycling inside active modal
+  document.addEventListener('keydown', function(e){
+    if(!activeModal) return;
+    if(e.key === 'Tab'){
+      const focusable = Array.from(activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+        .filter(el => !el.hasAttribute('disabled'));
+      if(focusable.length === 0) { e.preventDefault(); return; }
+      const first = focusable[0];
+      const last = focusable[focusable.length -1];
+      if(!e.shiftKey && document.activeElement === last){
+        e.preventDefault(); first.focus();
+      } else if(e.shiftKey && document.activeElement === first){
+        e.preventDefault(); last.focus();
+      }
+    }
+    // Escape closes the active modal (or project modal)
+    if(e.key === 'Escape'){
+      if(activeModal) deactivateModal(activeModal);
+      // also ensure mobile menu closes
+      const mm = document.getElementById('mobileMenu'); if(mm && mm.classList.contains('show')) mobileClose();
+      // close bored modal
+      const bm = document.getElementById('boredModal'); if(bm && bm.classList.contains('show')) closeBoredModal();
+    }
+  });
+
+  // Theme toggle functionality
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    const buttons = document.querySelectorAll('.theme-toggle');
+    buttons.forEach(button => {
+      button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+  }
+
+  // Set initial theme on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const buttons = document.querySelectorAll('.theme-toggle');
+    buttons.forEach(button => {
+      button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    });
+  });
+
+  // WhatsApp open (replace number below)
+  const WHATSAPP_NUMBER = '919999999999'; // <-- replace with your number in international format (no +)
+  function openWhatsApp(){
+    const text = encodeURIComponent('Hi FourForge, I want a quote for my project. Please advise.');
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+    window.open(url, '_blank');
+  }
+
+  // Contact submit (client-side) — build mailto and open user's email client
+  function submitForm(e){
+    e.preventDefault();
+    const payload = {
+      name: document.getElementById('name').value || '',
+      business: document.getElementById('business').value || '',
+      service: document.getElementById('service').value || '',
+      budget: document.getElementById('budget').value || '',
+      message: document.getElementById('message').value || ''
+    };
+
+    // Basic validation: require at least a name or message
+    if(!payload.name && !payload.message){
+      const fmErr = document.getElementById('formMsg');
+      fmErr.style.display='block'; fmErr.textContent = 'Please enter your name or a short message before sending.';
+      return;
+    }
+
+    const to = 'fourforgedigital@gmail.com';
+    const subject = encodeURIComponent(`Website enquiry from ${payload.name || 'Website visitor'}`);
+    const bodyLines = [
+      `Name: ${payload.name}`,
+      `Business: ${payload.business}`,
+      `Service: ${payload.service}`,
+      `Budget: ${payload.budget}`,
+      '',
+      'Message:',
+      `${payload.message}`
+    ];
+    const body = encodeURIComponent(bodyLines.join('\n'));
+
+    const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    const fm = document.getElementById('formMsg');
+    fm.style.display='block'; fm.style.color = 'var(--muted)'; fm.textContent = 'Opening your email client to send the enquiry...';
+
+    // Open the user's mail client with prefilled email
+    window.location.href = mailto;
+  }
+
+
+
+    // --- Section highlight on nav hover/focus ---
+    (function(){
+      // Respect reduced motion
+      if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // Inject small helper styles for the highlighted section
+      try{
+        const s = document.createElement('style');
+        s.textContent = '\n          .section-highlight{ transform: translateY(-6px); box-shadow: 0 30px 80px rgba(124,58,237,0.06); transition: transform .36s ease, box-shadow .36s ease; border-radius:12px; }\n          @keyframes sectionPulse { 0%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } 50%{ box-shadow:0 30px 80px rgba(124,58,237,0.06) } 100%{ box-shadow:0 18px 40px rgba(124,58,237,0.02) } }\n          .section-highlight.pulse{ animation: sectionPulse 1.6s ease-in-out; }\n          @media (prefers-reduced-motion: reduce){ .section-highlight, .section-highlight.pulse{ transition:none; animation:none } }\n        ';
+        document.head.appendChild(s);
+      }catch(e){ /* ignore */ }
+
+      // Bind nav links that target sections (href starts with '#')
+      const links = document.querySelectorAll('nav.links a[href^="#"]');
+      links.forEach(a => {
+        const href = a.getAttribute('href'); if(!href || href.length < 2) return;
+        const id = href.slice(1); const target = document.getElementById(id); if(!target) return;
+        let t = null;
+        function add(){ clearTimeout(t); target.classList.add('section-highlight'); target.classList.add('pulse'); setTimeout(()=> target.classList.remove('pulse'), 1600); }
+        function remove(){ clearTimeout(t); t = setTimeout(()=> target.classList.remove('section-highlight'), 320); }
+        a.addEventListener('mouseenter', add); a.addEventListener('mouseleave', remove);
+        a.addEventListener('focus', add); a.addEventListener('blur', remove);
+      });
+    })();
+  </script>
+</body>
+</html>
