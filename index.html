@@ -40,6 +40,7 @@
       --mock-bg: linear-gradient(180deg,#f8fafc 0%, #e2e8f0 100%);
       --mock-slide-bg: rgba(0,0,0,0.3);
       --modal-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    --mobile-bg: #f8fafc;
     }
 
     /* Dark mode variables */
@@ -53,7 +54,7 @@
       --header-bg: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
       --border-color: rgba(255,255,255,0.1);
       --shadow: 0 8px 30px rgba(0,0,0,0.3);
-      --mobile-bg: linear-gradient(180deg, rgba(15,23,42,0.8), rgba(30,41,59,0.9));
+      --mobile-bg: #1e293b;
       --modal-bg: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
     --mock-bg: linear-gradient(180deg,#1e293b 0%, #334155 100%);
     --mock-slide-bg: rgba(0,0,0,0.7);
@@ -105,7 +106,6 @@
     }
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand .txt{line-height:1}
-    /* Brand animation: FFD jump -> expand to full name -> collapse back. */
     .brand .title{font-family:Poppins, Inter; font-weight:700; font-size:18px; letter-spacing:0.2px}
 
     /* Container that locks width to prevent layout-shift */
@@ -113,40 +113,16 @@
       display:inline-block; position:relative; vertical-align:middle; overflow:visible; white-space:nowrap; will-change:width;
     }
 
-    /* FFD initials (jumping element) */
-    .brand-ffd{
-      display:inline-block; font-family:Poppins, Inter; font-weight:800; font-size:20px; letter-spacing:0.6px;
-      transform-origin:center bottom; transition: opacity .45s ease, transform .45s cubic-bezier(.2,.9,.3,1); color: var(--muted); backface-visibility:hidden;
-    }
-
     /* Full brand text (typing target) — show inline and readable */
     .brand-full{ display:inline-flex; align-items:center; gap:8px; font-family:Poppins, Inter; font-weight:700; font-size:18px; color:var(--muted); pointer-events:none; opacity:1; transform:none; transition:none }
 
-    /* Jump keyframes with squash-and-stretch + rebound */
-    @keyframes ffdJump{
-      0%   { transform: translateY(20px) scaleY(.85) scaleX(1.04); }
-      30%  { transform: translateY(-10px) scaleY(1.12) scaleX(.92); }
-      55%  { transform: translateY(4px) scaleY(.96) scaleX(1.01); }
-      80%  { transform: translateY(-2px) scaleY(1.03) scaleX(.99); }
-      100% { transform: translateY(0) scaleY(1) scaleX(1); }
-    }
 
-    /* Add .jump to trigger the jump animation on initials */
-    .brand-ffd.jump{ animation: ffdJump .85s cubic-bezier(.2,.9,.3,1) both }
-
-    /* When container has .show-full, reveal full text and fade initials out */
-    .brand-anim.show-full .brand-full{ opacity:1; transform:scale(1) }
-    .brand-anim.show-full .brand-ffd{ opacity:0; transform:scale(.95) translateY(-4px) }
-
-    /* Smooth rendering */
-    .brand-anim .brand-ffd, .brand-anim .brand-full{ -webkit-font-smoothing:antialiased }
+.brand-anim .brand-full{ -webkit-font-smoothing:antialiased }
 
     /* Respect reduced motion: show full name statically */
-    @media (prefers-reduced-motion: reduce){
-      .brand-ffd.jump{ animation:none }
-        .brand-anim .brand-full{ transition:none; transform:none; opacity:1 }
-        .brand-anim .brand-ffd{ opacity:0; transform:none }
-      }
+@media (prefers-reduced-motion: reduce){
+    .brand-anim .brand-full{ transition:none; transform:none; opacity:1 }
+  }
 
       /* Typing cursor and reduced-motion-safe typing styles */
       .brand-full{ display:inline-flex; align-items:center; gap:8px }
@@ -173,6 +149,11 @@
     .game-cell{width:50px; height:50px; background:var(--card); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border-radius:5px}
     .game-cell:hover{background:rgba(124,58,237,0.1)}
     .game-cell.disabled{cursor:not-allowed; opacity:0.5}
+    @media (max-width: 560px){
+      .game-board{ width:200px; }
+      .game-cell{ width:60px; height:60px; font-size:32px; }
+      #boredModal .panel{ padding:16px; }
+    }
     .theme-toggle{
       background:transparent;
       border:0;
@@ -327,8 +308,8 @@
     #mobileMenu.show{opacity:1; pointer-events:auto}
     #mobileMenu.show .panel{transform:translateX(0); opacity:1}
     #mobileMenu .mobile-link{display:block; padding:10px 0; color:var(--muted); text-decoration:none; font-weight:700; transition:color .18s ease, transform .18s ease}
-    #mobileMenu .mobile-link:hover{color:#1e293b; transform:translateX(6px)}
-    #mobileMenu .mobile-close{position:absolute; right:12px; top:12px; border:0; background:transparent; color:#1e293b; font-size:18px; cursor:pointer}
+    #mobileMenu .mobile-link:hover{color:var(--muted); transform:translateX(6px)}
+    #mobileMenu .mobile-close{position:absolute; right:12px; top:12px; border:0; background:transparent; color:var(--muted); font-size:18px; cursor:pointer}
     /* Responsive */
     @media (max-width: 1000px){
       .hero{grid-template-columns:1fr; gap:18px}
@@ -389,16 +370,18 @@
     </button>
   </header>
 
-  <div id="mobileMenu" class="modal" style="background:linear-gradient(180deg, rgba(248,250,252,0.8), rgba(226,232,240,0.9));" aria-hidden="true">
-    <div class="panel" role="dialog" aria-modal="true" style="position:relative;">
+  <div id="mobileMenu" class="modal" style="background:transparent;" aria-hidden="true">
+    <div class="panel" role="dialog" aria-modal="true" style="position:relative; max-height:90vh; overflow-y:auto; background: var(--mobile-bg);">
       <button class="mobile-close" aria-label="Close menu" onclick="mobileClose()">✕</button>
-      <nav style="display:flex;flex-direction:column;gap:6px;padding:10px 6px">
+      <nav style="display:flex;flex-direction:column;gap:6px;padding:10px 6px 10px 50px">
         <a class="mobile-link" href="#home" onclick="mobileClose()">Home</a>
         <a class="mobile-link" href="#services" onclick="mobileClose()">Services</a>
         <a class="mobile-link" href="#portfolio" onclick="mobileClose()">Portfolio</a>
         <a class="mobile-link" href="#tools" onclick="mobileClose()">Tools</a>
         <a class="mobile-link" href="#founders" onclick="mobileClose()">Founders</a>
+        <a class="mobile-link" href="#" onclick="mobileClose(); openBoredModal()">Bored?</a>
         <a class="mobile-link" href="#contact" onclick="mobileClose()">Contact</a>
+        <button class="theme-toggle" onclick="toggleTheme(); mobileClose()" aria-label="Toggle theme" style="position:absolute; left:12px; top:12px; display:block; padding:10px 0; font-weight:700;">🌙</button>
         <div style="margin-top:12px">
           <button class="btn" onclick="mobileClose(); document.location='#contact'">Get Quote</button>
         </div>
@@ -985,7 +968,7 @@ To give your brand a powerful, memorable, and professional identity in the digi
   // Mock slide video display
   (function(){
     const slides = [
-      '<video src="promo.mp4" autoplay muted loop style="width:100%; height:100%; object-fit:cover;"></video>'
+      '<video src="promo.mp4" autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;"></video>'
     ];
     const el = document.getElementById('mockSlides');
     // init
@@ -1271,63 +1254,7 @@ To give your brand a powerful, memorable, and professional identity in the digi
     window.location.href = mailto;
   }
 
-  // Brand animation controller (FFD jump -> expand -> collapse), respects reduced-motion
-  (function(){
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    // If another script requests typing mode, skip this brandLoop to avoid conflicts
-    if(window._brandMode === 'typing') return;
-    const container = document.getElementById('brandAnim');
-    const ffd = document.getElementById('brandFFD');
-    const full = document.getElementById('brandFull');
 
-    // Timing config (ms)
-    const TIMINGS = {
-      jump: 850,
-      revealDelay: 50,
-      revealTrans: 450,
-      hold: 1500,
-      collapseDelay: 150
-    };
-
-    function wait(ms){ return new Promise(r => setTimeout(r, ms)); }
-
-    function lockBrandWidth(){
-      if(!container || !ffd || !full) return;
-      // show full briefly to measure width
-      const prevFullOpacity = full.style.opacity;
-      full.style.opacity = '1'; full.style.transform = 'scale(1)';
-      const w1 = Math.ceil(full.getBoundingClientRect().width);
-      const w2 = Math.ceil(ffd.getBoundingClientRect().width);
-      const finalW = Math.max(w1, w2);
-      container.style.width = finalW + 'px';
-      // revert
-      full.style.opacity = prevFullOpacity;
-      full.style.transform = '';
-    }
-
-    async function brandLoop(){
-      if(!container || !ffd || !full) return;
-      if(reduced){ container.classList.add('show-full'); ffd.classList.remove('jump'); return; }
-      lockBrandWidth();
-      while(true){
-        container.classList.remove('show-full');
-        ffd.classList.remove('jump'); void ffd.offsetWidth; ffd.classList.add('jump');
-        await wait(TIMINGS.jump);
-        await wait(TIMINGS.revealDelay);
-        container.classList.add('show-full');
-        ffd.classList.remove('jump');
-        await wait(TIMINGS.hold);
-        container.classList.remove('show-full');
-        await wait(TIMINGS.revealTrans + TIMINGS.collapseDelay);
-      }
-    }
-
-    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', brandLoop);
-    else brandLoop();
-
-    // relock width on resize (debounced)
-    let rt = null; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt = setTimeout(()=>{ container.style.width=''; lockBrandWidth(); }, 180); });
-  })();
 
     // --- Section highlight on nav hover/focus ---
     (function(){
