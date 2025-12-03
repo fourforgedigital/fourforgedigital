@@ -26,19 +26,38 @@
       --bg: #ffffff;             /* white background */
       --card: #f8fafc;           /* light gray card */
       --muted: #1e293b;         /* darker muted text */
-      /* Responsive spacing/scale variables */
-      --space-xs: 0.5rem;
-      --space-sm: 1rem;
-      --space-md: 1.5rem;
-      --space-lg: 2.5rem;
-      --maxwidth: 1200px;
-      --accent1: #7c3aed;       /* violet */
+      --accent1: #7c3aed;
       --accent2: #f59e0b;       /* saffron/orange */
       --glass: rgba(0,0,0,0.04);
-      --glass-2: rgba(0,0,0,0.02);
       --maxwidth: 1200px;
       --blur: 28px;
       --radius: 14px;
+      --bg-gradient: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.02), transparent), radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.01), transparent), linear-gradient(180deg,#f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+      --header-bg: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      --border-color: rgba(0,0,0,0.1);
+      --shadow: 0 8px 30px rgba(0,0,0,0.1);
+      --modal-bg: linear-gradient(180deg, rgba(248,250,252,0.98), rgba(226,232,240,0.95));
+      --mock-bg: linear-gradient(180deg,#f8fafc 0%, #e2e8f0 100%);
+      --mock-slide-bg: rgba(0,0,0,0.3);
+      --modal-shadow: 0 30px 80px rgba(0,0,0,0.2);
+    }
+
+    /* Dark mode variables */
+    [data-theme="dark"] {
+      --bg: #0f172a;             /* dark slate background */
+      --card: #1e293b;           /* dark card */
+      --muted: #cbd5e1;         /* light muted text */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --bg-gradient: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.02), transparent), radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.01), transparent), linear-gradient(180deg,#0f172a 0%, #1e293b 50%, #334155 100%);
+      --header-bg: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(30,41,59,0.8));
+      --border-color: rgba(255,255,255,0.1);
+      --shadow: 0 8px 30px rgba(0,0,0,0.3);
+      --mobile-bg: linear-gradient(180deg, rgba(15,23,42,0.8), rgba(30,41,59,0.9));
+      --modal-bg: linear-gradient(180deg, rgba(15,23,42,0.98), rgba(30,41,59,0.95));
+    --mock-bg: linear-gradient(180deg,#1e293b 0%, #334155 100%);
+    --mock-slide-bg: rgba(0,0,0,0.7);
+      --modal-shadow: 0 30px 80px rgba(0,0,0,0.4);
     }
      /* -------------------------
        Reset & base
@@ -49,10 +68,8 @@
       overflow-x:hidden;
       margin:0;
       font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.02), transparent),
-                  radial-gradient(900px 500px at 90% 90%, rgba(245,158,11,0.01), transparent),
-                  linear-gradient(180deg,#f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
-      color: #1e293b;
+      background: var(--bg-gradient);
+      color: var(--muted);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       -webkit-tap-highlight-color: transparent;
@@ -78,13 +95,13 @@
       position:sticky; top:12px; z-index:60;
       margin:0 auto; max-width:var(--maxwidth);
       backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      background: var(--header-bg);
       border-radius:12px;
-      border:1px solid rgba(0,0,0,0.1);
+      border:1px solid var(--border-color);
       padding:10px 18px;
       margin-bottom:18px;
       display:flex; align-items:center; justify-content:space-between;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      box-shadow: var(--shadow);
     }
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand .txt{line-height:1}
@@ -147,6 +164,26 @@
     nav.links{display:flex;gap:18px;align-items:center}
     nav.links a{font-weight:600;padding:8px 10px;border-radius:10px; text-decoration:none; color:var(--muted)}
     nav.links a.cta{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#061126; box-shadow:0 6px 20px rgba(124,58,237,0.12)}
+    nav.links a.bored{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#061126; box-shadow:0 6px 20px rgba(245,158,11,0.12); cursor:pointer}
+    /* Game modal styles */
+    #boredModal{background: rgba(0,0,0,0.5);}
+    #boredModal .panel{background: var(--modal-bg); padding:24px; border-radius:12px; width:90%; max-width:400px; box-shadow: var(--modal-shadow); border:1px solid var(--border-color); color: var(--muted)}
+    #boredModal .panel, #boredModal .panel *{color: var(--muted)}
+    .game-board{display:grid; grid-template-columns:repeat(3,1fr); gap:5px; width:150px; margin:10px auto}
+    .game-cell{width:50px; height:50px; background:var(--card); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border-radius:5px}
+    .game-cell:hover{background:rgba(124,58,237,0.1)}
+    .game-cell.disabled{cursor:not-allowed; opacity:0.5}
+    .theme-toggle{
+      background:transparent;
+      border:0;
+      padding:8px;
+      border-radius:8px;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:18px;
+      transition:color .18s ease;
+    }
+    .theme-toggle:hover{color:#7c3aed}
     .hamb{
       display:none;
       background:transparent;
@@ -178,25 +215,26 @@
 
     /* mock monitor - more polished with bezel, subtle tilt and glow */
       .mock-device{position:relative; width:88%; max-width:520px; height:76%; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:12px; align-items:center; transform: perspective(800px) rotateX(2deg);}
-    .mock-device::before{content:''; position:absolute; width:92%; height:86%; top:42px; border-radius:18px; background: linear-gradient(180deg,#f8fafc,#e2e8f0); box-shadow: 0 24px 60px rgba(0,0,0,0.1); transform: translateY(-6px); z-index: -1}
+    .mock-device::before{content:''; position:absolute; width:92%; height:86%; top:42px; border-radius:18px; box-shadow: 0 24px 60px rgba(0,0,0,0.1); transform: translateY(-6px); z-index: -1}
+
+    /* Mock slides dark background */
+    .mock-slide{ /* background: var(--mock-slide-bg); */ }
 
     /* desktop screen inside the mock device - glossy panel */
-    .mock-screen{width:94%; height:70%; background:linear-gradient(180deg,#f8fafc 0%, #e2e8f0 100%); border-radius:12px; border:8px solid rgba(0,0,0,0.2); box-shadow: 0 18px 40px rgba(0,0,0,0.1), inset 0 2px 18px rgba(0,0,0,0.02); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden}
+    .mock-screen{width:94%; height:70%; background:var(--mock-bg); border-radius:12px; border:8px solid rgba(0,0,0,0.2); box-shadow: 0 18px 40px rgba(0,0,0,0.1), inset 0 2px 18px rgba(0,0,0,0.02); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden}
     .mock-screen:after{content:''; position:absolute; left:50%; transform:translateX(-50%); bottom:-18px; width:120px; height:16px; background:linear-gradient(180deg,#061226,#04101a); border-radius:8px}
     .mock-screen:before{content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00)); pointer-events:none}
 
     /* animated slides inside mock screen */
     .mock-slide{flex:1; width:100%; border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-weight:800; font-size:18px; position:relative; overflow:hidden; padding:12px; text-align:center; transition:opacity .32s ease, transform .32s ease}
-    .mock-slide::before{content:''; position:absolute; inset:0; pointer-events:none; background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); mix-blend-mode:overlay}
+    .mock-slide::before{content:''; position:absolute; inset:0; pointer-events:none; /* background: linear-gradient(180deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02)); */ mix-blend-mode:overlay}
     .mock-slide.fade-out{opacity:0; transform:translateY(6px)}
     .mock-slide.fade-in{opacity:1; transform:translateY(0)}
 
     /* controls */
-    .mock-controls{display:flex; gap:10px; align-items:center; justify-content:center}
-    .mock-controls .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.08); transition:all .28s ease}
-    .mock-controls .dot.active{background:#ffffff; width:22px; height:8px; border-radius:6px}
     .mock-controls{display:flex; gap:8px; align-items:center; justify-content:center}
-    .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.06)}
+    .mock-controls .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.06); transition:all .28s ease}
+    .mock-controls .dot.active{background:#ffffff; width:22px; height:8px; border-radius:6px}
 
     /* -------------------------
        Sections
@@ -244,25 +282,25 @@
     select{
       background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.125));
       border:1px solid rgba(255,255,255,0.4);
-      padding:10px; border-radius:8px; color:black; /* changed font color to black for better visibility */
+      padding:10px; border-radius:8px; color:var(--muted); /* light text for better visibility in dark mode */
       -webkit-appearance: none; -moz-appearance: none; appearance: none;
       background-repeat: no-repeat; background-position: right 10px center;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     select::placeholder {
-      color: #64748b; /* darker placeholder color for better visibility */
+      color: #94a3b8; /* lighter placeholder color for better visibility in dark mode */
       opacity: 1; /* make sure it is visible in all browsers */
     }
     select:focus, select:active{
-      outline: none; 
-      border-color: black;
+      outline: none;
+      border-color: var(--muted);
       border-width: 1px;
       box-shadow: none;
-      color: black; /* dark color on focus/selection */
+      color: var(--muted); /* light color on focus/selection */
     }
     /* Try to style native options where supported so dropdown items are readable */
     select option{ background-color: #f8fafc; color: #1e293b }
-    .small{font-size:13px; color:#1e293b; /* darker text for better visibility */}
+    .small{font-size:13px; color:var(--muted); /* light text for better visibility in dark mode */}
     .pay-qr{width:120px;height:120px;background:linear-gradient(90deg,var(--accent1),var(--accent2)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:700; color:#081126}
 
     /* footer */
@@ -281,8 +319,8 @@
     .modal.show{display:flex}
     /* Project modal: stronger overlay and opaque panel for legibility */
     #projModal{background: rgba(0,0,0,0.5);}
-    #projModal .panel{background: linear-gradient(180deg, rgba(248,250,252,0.98), rgba(226,232,240,0.95)); padding:24px; border-radius:12px; width:90%; max-width:900px; box-shadow:0 40px 100px rgba(0,0,0,0.3); border:1px solid rgba(0,0,0,0.1); color: #1e293b}
-    #projModal .panel, #projModal .panel *{color: #1e293b}
+    #projModal .panel{background: var(--modal-bg); padding:24px; border-radius:12px; width:90%; max-width:900px; box-shadow: var(--modal-shadow); border:1px solid var(--border-color); color: var(--muted)}
+    #projModal .panel, #projModal .panel *{color: var(--muted)}
     /* Mobile menu overrides: keep transitions and overlay click-to-close */
     #mobileMenu{display:flex; opacity:0; pointer-events:none; transition:opacity .28s ease; backdrop-filter: blur(6px);}
     #mobileMenu .panel{max-width:320px; width:92%; transform:translateX(18px); opacity:0; transition:transform .28s ease, opacity .28s ease; border-radius:12px}
@@ -291,8 +329,6 @@
     #mobileMenu .mobile-link{display:block; padding:10px 0; color:var(--muted); text-decoration:none; font-weight:700; transition:color .18s ease, transform .18s ease}
     #mobileMenu .mobile-link:hover{color:#1e293b; transform:translateX(6px)}
     #mobileMenu .mobile-close{position:absolute; right:12px; top:12px; border:0; background:transparent; color:#1e293b; font-size:18px; cursor:pointer}
-    .modal .panel{background:linear-gradient(180deg, rgba(248,250,252,0.98), rgba(226,232,240,0.95)); padding:20px; border-radius:12px; width:90%; max-width:900px; box-shadow:0 30px 80px rgba(0,0,0,0.2)}
-
     /* Responsive */
     @media (max-width: 1000px){
       .hero{grid-template-columns:1fr; gap:18px}
@@ -329,7 +365,7 @@
       <div class="txt">
         <div class="title">
           <span class="brand-anim" id="brandAnim" aria-live="polite">
-          <span class="brand-full" id="brandFull" aria-hidden="true" data-text="FourForge Digital" style="color: #273549;">
+          <span class="brand-full" id="brandFull" aria-hidden="true" data-text="FourForge Digital">
             <span id="brandText" aria-hidden="true"></span>
             <span class="typing-cursor" aria-hidden="true"></span>
           </span>
@@ -341,9 +377,11 @@
     <nav class="links" role="navigation" aria-label="Main navigation">
       <a href="#services">Services</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#tools">Tools</a>
+       <a href="#tools">Tools</a>
       <a href="#founders">Founders</a>
+      <a href="#" class="bored" onclick="openBoredModal()">Bored?</a>
       <a href="#contact" class="cta">Get Quote</a>
+      <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle" onclick="toggleTheme()">🌙</button>
     </nav>
 
     <button class="hamb" aria-label="Open menu" onclick="document.getElementById('mobileMenu').classList.toggle('show')">
@@ -375,8 +413,12 @@
     <section class="hero reveal">
       <div class="hero-left">
         <h1>FourForge Digital — We build brands that grow.</h1>
-        <p class="lead">Premium web development, UI/UX, data analysis, content creation and video — all tuned to make your business scale. Strategy-driven, beautifully executed, and focused on measurable results.</p>
+        <p class="lead">Four Forge Digital — four young minds, one vision, building the digital future.
 
+Founded in 2025, Four Forge Digital is a Premium One-Stop Digital Partner connecting businesses and individuals with the digital era through services like website development, digital marketing, social media management, content creation, graphic design, UI/UX design, reels production, and PR, we empower your brand’s identity and growth.
+
+<br><b>Our Promise:
+To give your brand a powerful, memorable, and professional identity in the digital world.</b></p>
         <div class="cta-row">
           <button class="btn" onclick="document.location='#contact'">Get a free quote</button>
           <button class="btn secondary" onclick="document.location='#portfolio'">See our work</button>
@@ -397,7 +439,7 @@
               <div id="mockSlides" class="mock-slide">Stunning Websites • Fast • Responsive</div>
             </div>
             <div class="mock-controls" style="margin-top:12px">
-              <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+              <div class="dot active"></div>
             </div>
           </div>
         </div>
@@ -541,6 +583,43 @@
           <button onclick="closeProject()" class="btn secondary">Close</button>
         </div>
         <div id="projBody" style="margin-top:12px;color:var(--muted)"></div>
+      </div>
+    </div>
+
+    <!-- modal for bored game -->
+    <div id="boredModal" class="modal" aria-hidden="true">
+      <div class="panel" role="dialog" aria-modal="true" aria-label="Bored game">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <div style="font-weight:800;font-size:18px">Bored? Play Tic-Tac-Toe!</div>
+          <button onclick="closeBoredModal()" class="btn secondary">Close</button>
+        </div>
+        <div style="margin-top:12px;text-align:center">
+          <div id="gameSetup" style="display:block;">
+            <label for="playerName" style="display:block;margin-bottom:8px;font-weight:600">Enter your name:</label>
+            <input type="text" id="playerName" placeholder="Your name" style="margin-bottom:12px;padding:8px;border-radius:8px;border:1px solid var(--border-color);background:var(--card);color:var(--muted);width:200px;max-width:90%">
+            <div style="margin-bottom:12px">
+              <label style="font-weight:600;margin-right:12px">Choose your symbol:</label>
+              <label><input type="radio" name="playerSymbol" value="X" checked> X</label>
+              <label style="margin-left:12px"><input type="radio" name="playerSymbol" value="O"> O</label>
+            </div>
+            <button onclick="startGame()" class="btn">Start Game</button>
+          </div>
+          <div id="gamePlay" style="display:none;">
+            <div class="game-board" id="gameBoard">
+              <div class="game-cell" data-index="0"></div>
+              <div class="game-cell" data-index="1"></div>
+              <div class="game-cell" data-index="2"></div>
+              <div class="game-cell" data-index="3"></div>
+              <div class="game-cell" data-index="4"></div>
+              <div class="game-cell" data-index="5"></div>
+              <div class="game-cell" data-index="6"></div>
+              <div class="game-cell" data-index="7"></div>
+              <div class="game-cell" data-index="8"></div>
+            </div>
+            <div id="gameStatus" style="margin-top:12px;font-weight:600"></div>
+            <button onclick="resetToSetup()" class="btn secondary" style="margin-top:12px">Reset Game</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -903,33 +982,14 @@
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   })();
 
-  // Mock slide text rotation with fade animation and active dot indicator
+  // Mock slide video display
   (function(){
     const slides = [
-      'Stunning Websites • Fast • Responsive',
-      'Pixel-perfect UI/UX • Conversion focused',
-      'Video Production • Reels & Promo Cuts'
+      '<video src="promo.mp4" autoplay muted loop style="width:100%; height:100%; object-fit:cover;"></video>'
     ];
-    let i = 0;
     const el = document.getElementById('mockSlides');
-    const dots = document.querySelectorAll('.mock-controls .dot');
-    function showSlide(idx){
-      if(!el) return;
-      // fade out
-      el.classList.remove('fade-in');
-      el.classList.add('fade-out');
-      // update dots
-      dots.forEach((d,di)=> d.classList.toggle('active', di === idx));
-      setTimeout(()=>{
-        el.textContent = slides[idx];
-        el.classList.remove('fade-out');
-        el.classList.add('fade-in');
-      }, 260);
-    }
     // init
-    if(el) el.textContent = slides[0];
-    if(dots && dots[0]) dots[0].classList.add('active');
-    setInterval(()=>{ i=(i+1)%slides.length; showSlide(i); }, 3200);
+    if(el) el.innerHTML = slides[0];
   })();
 
   // portfolio modal content (example)
@@ -939,8 +999,10 @@
     3: {title:'Promo Film', body:'60s product promo + vertical reels. Optimized cut for FB/IG/TikTok.'},
     4: {title:'Clinic Site', body:'Multi-page site with service pages, contact forms and SEO basics.'},
     5: {title:'Retail Packaging', body:'Shelf-ready packaging design and dielines.'},
-    6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
+  6: {title:'Social Campaign', body:'15 creatives and 10 video thumbnails for a 30-day campaign.'}
   };
+  let playerName = '';
+  let playerSymbol = 'X';
   // Active modal reference for focus trapping
   let activeModal = null;
 
@@ -967,6 +1029,130 @@
     activateModal(modal);
   }
   function closeProject(){ deactivateModal(document.getElementById('projModal')); }
+
+  function openBoredModal(){
+    const modal = document.getElementById('boredModal');
+    activateModal(modal);
+    resetToSetup();
+  }
+  function closeBoredModal(){ deactivateModal(document.getElementById('boredModal')); }
+
+  function startGame() {
+    playerName = document.getElementById('playerName').value.trim() || 'Player';
+    playerSymbol = document.querySelector('input[name="playerSymbol"]:checked').value;
+    document.getElementById('gameSetup').style.display = 'none';
+    document.getElementById('gamePlay').style.display = 'block';
+    resetGame();
+  }
+
+  let currentPlayer = 'X';
+  let gameState = ['', '', '', '', '', '', '', '', ''];
+  let gameActive = true;
+  const winningConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
+  function handleCellClick(event) {
+    const clickedCell = event.target;
+    const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+    if (gameState[clickedCellIndex] !== '' || !gameActive || clickedCell.classList.contains('disabled')) {
+      return;
+    }
+    gameState[clickedCellIndex] = currentPlayer;
+    clickedCell.textContent = currentPlayer;
+    checkResult();
+  }
+
+  function makeAIMove() {
+    const emptyCells = [];
+    gameState.forEach((cell, index) => {
+      if (cell === '') emptyCells.push(index);
+    });
+    if (emptyCells.length === 0) return;
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const aiCellIndex = emptyCells[randomIndex];
+    gameState[aiCellIndex] = currentPlayer;
+    document.querySelector(`.game-cell[data-index="${aiCellIndex}"]`).textContent = currentPlayer;
+    checkResult();
+  }
+
+  function checkResult() {
+    let roundWon = false;
+    for (let i = 0; i < winningConditions.length; i++) {
+      const winCondition = winningConditions[i];
+      let a = gameState[winCondition[0]];
+      let b = gameState[winCondition[1]];
+      let c = gameState[winCondition[2]];
+      if (a === '' || b === '' || c === '') {
+        continue;
+      }
+      if (a === b && b === c) {
+        roundWon = true;
+        break;
+      }
+    }
+    if (roundWon) {
+      const winner = currentPlayer === playerSymbol ? playerName : 'Computer';
+      document.getElementById('gameStatus').textContent = `${winner} wins!`;
+      gameActive = false;
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+      return;
+    }
+    let roundDraw = !gameState.includes('');
+    if (roundDraw) {
+      document.getElementById('gameStatus').textContent = 'Draw!';
+      gameActive = false;
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+      return;
+    }
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    const turnPlayer = currentPlayer === playerSymbol ? playerName : 'Computer';
+    document.getElementById('gameStatus').textContent = `It's ${turnPlayer}'s turn`;
+    if (currentPlayer !== playerSymbol) {
+      // AI's turn
+      setTimeout(() => {
+        document.querySelectorAll('.game-cell').forEach(cell => cell.classList.add('disabled'));
+        makeAIMove();
+      }, 500);
+    } else {
+      document.querySelectorAll('.game-cell').forEach(cell => cell.classList.remove('disabled'));
+    }
+  }
+
+  function resetGame() {
+    currentPlayer = playerSymbol || 'X';
+    gameState = ['', '', '', '', '', '', '', '', ''];
+    gameActive = true;
+    const playerTurn = currentPlayer === playerSymbol ? (playerName || 'Player') : 'Computer';
+    document.getElementById('gameStatus').textContent = `It's ${playerTurn}'s turn`;
+    document.querySelectorAll('.game-cell').forEach(cell => {
+      cell.textContent = '';
+      cell.classList.remove('disabled');
+    });
+  }
+
+  function resetToSetup() {
+    document.getElementById('gameSetup').style.display = 'block';
+    document.getElementById('gamePlay').style.display = 'none';
+    document.getElementById('playerName').value = '';
+    playerName = '';
+    playerSymbol = 'X';
+    document.querySelector('input[name="playerSymbol"][value="X"]').checked = true;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.game-cell').forEach(cell => {
+      cell.addEventListener('click', handleCellClick);
+    });
+    document.getElementById('gameStatus').textContent = `It's ${currentPlayer}'s turn`;
+  });
 
   // filter portfolio
   function filterPortfolio(t){
@@ -1013,7 +1199,28 @@
       if(activeModal) deactivateModal(activeModal);
       // also ensure mobile menu closes
       const mm = document.getElementById('mobileMenu'); if(mm && mm.classList.contains('show')) mobileClose();
+      // close bored modal
+      const bm = document.getElementById('boredModal'); if(bm && bm.classList.contains('show')) closeBoredModal();
     }
+  });
+
+  // Theme toggle functionality
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    const button = document.getElementById('themeToggle');
+    button.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  }
+
+  // Set initial theme on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    const button = document.getElementById('themeToggle');
+    button.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
   });
 
   // WhatsApp open (replace number below)
