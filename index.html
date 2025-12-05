@@ -421,7 +421,7 @@ To give your brand a powerful, memorable, and professional identity in the digi
           <button class="btn secondary" onclick="document.location='#portfolio'">See our work</button>
         </div>
 
-<div class="stats" style="margin-top:20px">
+<div class="stats">
   <div class="stat" id="projectsCount">20+ Projects</div>
   <div class="stat" id="clientsCount">50+ Happy Clients</div>
   <div class="stat">Avg Turnaround 2–7 days</div>
@@ -617,6 +617,7 @@ To give your brand a powerful, memorable, and professional identity in the digi
             </div>
             <div id="gameStatus" style="margin-top:12px;font-weight:600"></div>
             <button onclick="resetToSetup()" class="btn secondary" style="margin-top:12px">Reset Game</button>
+            <button onclick="saveGameState()" class="btn secondary" style="margin-top:12px">Save Game</button>
           </div>
         </div>
       </div>
@@ -965,8 +966,42 @@ To give your brand a powerful, memorable, and professional identity in the digi
   let board = [];
   let score = 0;
   let gameOver = false;
+  let touchStartX = 0;
+  let touchStartY = 0;
   // Active modal reference for focus trapping
   let activeModal = null;
+
+  function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+
+  function handleTouchEnd(e) {
+    if (gameOver) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+    const absDeltaX = Math.abs(deltaX);
+    const absDeltaY = Math.abs(deltaY);
+    if (absDeltaX > absDeltaY) {
+      if (absDeltaX > 50) {
+        if (deltaX > 0) {
+          slide('right');
+        } else {
+          slide('left');
+        }
+      }
+    } else {
+      if (absDeltaY > 50) {
+        if (deltaY > 0) {
+          slide('down');
+        } else {
+          slide('up');
+        }
+      }
+    }
+  }
 
   function activateModal(modal){
     if(!modal) return;
@@ -1032,6 +1067,9 @@ To give your brand a powerful, memorable, and professional identity in the digi
       cell.setAttribute('data-index', i);
       gameBoard.appendChild(cell);
     }
+    // Add touch event listeners for mobile swiping
+    gameBoard.addEventListener('touchstart', handleTouchStart, { passive: false });
+    gameBoard.addEventListener('touchend', handleTouchEnd, { passive: false });
     spawnTile();
     spawnTile();
     updateUI();
