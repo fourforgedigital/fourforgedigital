@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About Us — FourForge Digital</title>
-  <link rel="icon" href="FourForage.jpg" type="image/jpeg">
   <meta name="description" content="Learn about FourForge Digital — our mission, team, and commitment to delivering premium digital solutions." />
   <meta name="theme-color" content="#0f172a" />
   <link rel="canonical" href="https://fourforgedigital.github.io/fourforgedigital/about.html">
@@ -149,6 +148,7 @@
     .game-cell{width:50px; height:50px; background:var(--card); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; font-size:24px; cursor:pointer; border-radius:5px}
     .game-cell:hover{background:rgba(124,58,237,0.1)}
     .game-cell.disabled{cursor:not-allowed; opacity:0.5}
+    [data-theme="dark"] .game-cell.empty{background: rgba(0,0,0,0.3)}
     @media (max-width: 560px){
       .game-board{ width:200px; }
       .game-cell{ width:60px; height:60px; font-size:32px; }
@@ -1084,4 +1084,3 @@
   </script>
 </body>
 </html>
-
